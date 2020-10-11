@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Random</title>
 </head>
 <body>
 <div class="container-fluid">

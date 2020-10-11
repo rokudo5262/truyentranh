@@ -13,14 +13,13 @@
 			  </button>
 			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			  	<?php foreach ($chapter_book as $data):?>
-			  		<a class="dropdown-item active" href="<?php echo base_url();?>main/doctruyen/<?= $data['id_chapter']?>">
+			  		<a class="dropdown-item" href="<?php echo base_url();?>main/doctruyen/<?= $data['id_chapter']?>">
 			  			Chapter <?= $data['number_chapter']?> : <?= $data['name_chapter']?>
 			  		</a>
-					<?php endforeach;?>
-			    
+					<?php endforeach;?> 
 			  </div>
 			</div>
-		<?php foreach ($genre_book as $data):?>
+		<?php foreach ($chapter_page as $data):?>
 			<img src="<?php echo base_url();?>asset/images/<?= $data['id_chapter']?>/<?= $data['img_page']?>">
 					<?php endforeach;?>
 	</div>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Detail</title>
 </head>
 <body>
 <div class="container-fluid">
 	<div class="card">
 		<div class="card-header text-white bg-primary">
-			<h5>Chi Tiết</h5>
+			<h5>Chi Tiết Truyện : <?php echo $book[0]['name_book']?></h5>
 		</div>
 		<div class="card-body">
 			<div class="container-fluid">
@@ -52,7 +52,7 @@
 						    <li class="list-group-item">
 						    	<p>Thể Loại:
 						    		<?php foreach ($genre_book as $data):?>
-						    			<a href=""><?= $data['name_genre']?></a>
+						    			<a href="<?php echo base_url();?>main/genre/<?= $data['id_genre']?>"><?= $data['name_genre']?></a>
 						    		<?php endforeach;?>
 						    	</p>
 						    </li>
@@ -70,14 +70,12 @@
 		<div class="card-footer text-white bg-primary">
 		</div>
 	</div>
-
 	<div class="card">
 		<div class="card-header text-white bg-primary">
-			
+			<label>Danh Sách Chương Truyện</label>
 		</div>
 		<div class="card-body">
 			<ul class="list-group">
-				
 					<?php foreach ($chapter_book as $data):?>
 						<li class="list-group-item text-md-left">
 							<a href="<?php echo base_url();?>main/doctruyen/<?= $data['id_chapter']?>">

@@ -15,7 +15,7 @@ class truyentranh_model extends CI_Model
 		$id=$this->db->insert($table,$data);
 		return $this->db->insert_id();
 	}
-	function check($gmail)
+	public function check($gmail)
 	{
 	    $this->db->select('*'); 
 	    $this->db->from('user');

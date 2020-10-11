@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Trang Cá Nhân</title>
 </head>
 <body>
 <div class="card">
-	<div class="card-header">
-		
-	</div>
+	<div class="card-header"></div>
 	<div class="card-body">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 				  <li class="nav-item">
-				    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Trailer</a>
+				    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Bookmarks</a>
 				  </li>
 				  <li class="nav-item">
-				    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Tóm Tắt</a>
+				    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Lịch Sử Xem</a>
 				  </li>
 				  <li class="nav-item">
-				    <a class="nav-link" id="daodien-tab" data-toggle="tab" href="#daodien" role="tab" aria-controls="contact" aria-selected="false">Đạo Diển</a>
+				    <a class="nav-link" id="daodien-tab" data-toggle="tab" href="#daodien" role="tab" aria-controls="contact" aria-selected="false"></a>
 				  </li>
 				  <li class="nav-item">
-				    <a class="nav-link" id="dienvien-tab" data-toggle="tab" href="#dienvien" role="tab" aria-controls="contact" aria-selected="false">Diển Viên</a>
+				    <a class="nav-link" id="dienvien-tab" data-toggle="tab" href="#dienvien" role="tab" aria-controls="contact" aria-selected="false"></a>
 				  </li>
 				</ul>
 		<div class="tab-content" id="myTabContent">
@@ -33,9 +31,7 @@
 					</div>
 				</div>
 	</div>
-	<div class="card-footer">
-		
-	</div>
+	<div class="card-footer"></div>
 </div>
 </body>
 </html>

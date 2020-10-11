@@ -42,7 +42,7 @@
 				</div>
 				<div class="card-body">
 						<?php foreach ($genre as $data):?>
-							<a href="<?php echo base_url();?>main/theloai/<?php echo $data['id_genre']?>"><?php echo $data['name_genre']?></a>
+							<a href="<?php echo base_url();?>main/genre/<?php echo $data['id_genre']?>"><?php echo $data['name_genre']?></a>
 						<?php endforeach;?>
 				</div>
 				<div class="card-footer"></div>
