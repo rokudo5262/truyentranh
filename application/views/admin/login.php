@@ -52,7 +52,7 @@
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <a href="<?php echo base_url(); ?>admin/charts" class="btn btn-primary btn-user btn-block">
+                    <a href="<?php echo base_url(); ?>admin/dashboard" class="btn btn-primary btn-user btn-block">
                       Login
                     </a>
                     <hr>

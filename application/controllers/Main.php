@@ -8,7 +8,8 @@ class main extends CI_Controller
 		parent::__construct();
 		$this->load->helper(array('form'));
 		$this->load->helper(array('url'));
-		$this->load->library(array('form_validation','session'));
+		$this->load->library(array('form_validation'));
+		$this->load->library(array('session'));
 		$this->load->library("cart");
 		$this->load->library("pagination");
 		$this->load->library('image_lib');
