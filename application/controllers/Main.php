@@ -6,6 +6,7 @@ class main extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->helper('string');
 		$this->load->helper(array('form'));
 		$this->load->helper(array('url'));
 		$this->load->library(array('form_validation'));
@@ -40,14 +41,14 @@ class main extends CI_Controller
         else
 	    {
 	        echo "<script> alert('Đăng nhập không thành công');</script>";
-	        echo "<script> window.location.href='../Main/trangchu';</script>";
+	        echo "<script> window.location.href='../main/trangchu';</script>";
 	    } 
 	}
 /********************************************************************************************************************************************************************************************************************************************************************/
 	public function signout()
 	{
 		$this->session->sess_destroy();
-    	redirect('Main/trangchu');
+    	redirect('main/trangchu');
 	}
 /********************************************************************************************************************************************************************************************************************************************************************/
 	public function signup()
@@ -92,16 +93,16 @@ class main extends CI_Controller
 		if ($this->session->userdata('id_user')!='')
 		{
 			$giaodien['header'] = $this->load->view('home/header_signin',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/Footer',NULL,TRUE);
+			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
 			$giaodien['body'] = $this->load->view('page/trangchu',$data,TRUE);
-			$this->load->view('home/Master',$giaodien);
+			$this->load->view('home/master',$giaodien);
 		}
 		else
 		{
 			$giaodien['header'] = $this->load->view('home/header_signout',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/Footer',NULL,TRUE);
+			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
 			$giaodien['body'] = $this->load->view('page/trangchu',$data,TRUE);
-			$this->load->view('home/Master',$giaodien);
+			$this->load->view('home/master',$giaodien);
 		}
 
 	}
@@ -122,16 +123,16 @@ class main extends CI_Controller
 		if ($this->session->userdata('id_user')!='')
 		{
 			$giaodien['header'] = $this->load->view('home/header_signin',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/Footer',NULL,TRUE);
+			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
 			$giaodien['body'] = $this->load->view('page/canhan',$data,TRUE);
-			$this->load->view('home/Master',$giaodien);
+			$this->load->view('home/master',$giaodien);
 		}
 		else
 		{
 			$giaodien['header'] = $this->load->view('home/header_signout',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/Footer',NULL,TRUE);
+			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
 			$giaodien['body'] = $this->load->view('page/canhan',$data,TRUE);
-			$this->load->view('home/Master',$giaodien);
+			$this->load->view('home/master',$giaodien);
 		}
 	}
 	public function timkiemnangcao()
@@ -151,16 +152,16 @@ class main extends CI_Controller
 		if ($this->session->userdata('id_user')!='')
 		{
 			$giaodien['header'] = $this->load->view('home/header_signin',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/Footer',NULL,TRUE);
+			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
 			$giaodien['body'] = $this->load->view('page/timkiemnangcao',$data,TRUE);
-			$this->load->view('home/Master',$giaodien);
+			$this->load->view('home/master',$giaodien);
 		}
 		else
 		{
 			$giaodien['header'] = $this->load->view('home/header_signout',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/Footer',NULL,TRUE);
+			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
 			$giaodien['body'] = $this->load->view('page/timkiemnangcao',$data,TRUE);
-			$this->load->view('home/Master',$giaodien);
+			$this->load->view('home/master',$giaodien);
 		}
 	}
 	public function moinhat()
@@ -180,16 +181,16 @@ class main extends CI_Controller
 		if ($this->session->userdata('id_user')!='')
 		{
 			$giaodien['header'] = $this->load->view('home/header_signin',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/Footer',NULL,TRUE);
+			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
 			$giaodien['body'] = $this->load->view('page/moinhat',$data,TRUE);
-			$this->load->view('home/Master',$giaodien);
+			$this->load->view('home/master',$giaodien);
 		}
 		else
 		{
 			$giaodien['header'] = $this->load->view('home/header_signout',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/Footer',NULL,TRUE);
+			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
 			$giaodien['body'] = $this->load->view('page/moinhat',$data,TRUE);
-			$this->load->view('home/Master',$giaodien);
+			$this->load->view('home/master',$giaodien);
 		}
 	}
 	public function genre($id='')
@@ -217,16 +218,16 @@ class main extends CI_Controller
 		if ($this->session->userdata('id_user')!='')
 		{
 			$giaodien['header'] = $this->load->view('home/header_signin',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/Footer',NULL,TRUE);
+			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
 			$giaodien['body'] = $this->load->view('page/genre',$data,TRUE);
 			$this->load->view('home/Master',$giaodien);
 		}
 		else
 		{
 			$giaodien['header'] = $this->load->view('home/header_signout',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/Footer',NULL,TRUE);
+			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
 			$giaodien['body'] = $this->load->view('page/genre',$data,TRUE);
-			$this->load->view('home/Master',$giaodien);
+			$this->load->view('home/master',$giaodien);
 		}
 	}
 	public function chitiet($id='')
@@ -273,16 +274,16 @@ class main extends CI_Controller
 		if ($this->session->userdata('id_user')!='')
 		{
 			$giaodien['header'] = $this->load->view('home/header_signin',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/Footer',NULL,TRUE);
+			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
 			$giaodien['body'] = $this->load->view('page/chitiet',$data,TRUE);
-			$this->load->view('home/Master',$giaodien);
+			$this->load->view('home/master',$giaodien);
 		}
 		else
 		{
 			$giaodien['header'] = $this->load->view('home/header_signout',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/Footer',NULL,TRUE);
+			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
 			$giaodien['body'] = $this->load->view('page/chitiet',$data,TRUE);
-			$this->load->view('home/Master',$giaodien);
+			$this->load->view('home/master',$giaodien);
 		}
 	}
 	public function doctruyen($id='')
@@ -318,16 +319,16 @@ class main extends CI_Controller
 		if ($this->session->userdata('id_user')!='')
 		{
 			$giaodien['header'] = $this->load->view('home/header_signin',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/Footer',NULL,TRUE);
+			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
 			$giaodien['body'] = $this->load->view('page/doctruyen',$data,TRUE);
-			$this->load->view('home/Master',$giaodien);
+			$this->load->view('home/master',$giaodien);
 		}
 		else
 		{
 			$giaodien['header'] = $this->load->view('home/header_signout',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/Footer',NULL,TRUE);
+			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
 			$giaodien['body'] = $this->load->view('page/doctruyen',$data,TRUE);
-			$this->load->view('home/Master',$giaodien);
+			$this->load->view('home/master',$giaodien);
 		}
 	}
 }

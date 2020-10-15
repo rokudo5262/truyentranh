@@ -90,24 +90,47 @@
       <i class="fas fa-fw fa-chart-area"></i>
       <span>Charts</span></a>
   </li>
-
   <!-- Nav Item - Tables -->
   <li class="nav-item">
     <a class="nav-link" href="<?php echo base_url(); ?>admin/tables">
       <i class="fas fa-fw fa-table"></i>
       <span>Tables</span></a>
   </li>
-  <!-- Nav Item - Tables -->
+  <!-- Nav Item - Manga -->
+  <li class="nav-item">
+    <a class="nav-link" href="<?php echo base_url(); ?>admin/books">
+      <i class="fas fa-fw fa-table"></i>
+      <span>Manga</span></a>
+  </li>
+  <!-- Nav Item - Authors -->
   <li class="nav-item">
     <a class="nav-link" href="<?php echo base_url(); ?>admin/authors">
       <i class="fas fa-fw fa-table"></i>
       <span>Author</span></a>
   </li>
-  <!-- Nav Item - Tables -->
+  <!-- Nav Item - Artists -->
   <li class="nav-item">
     <a class="nav-link" href="<?php echo base_url(); ?>admin/artists">
       <i class="fas fa-fw fa-table"></i>
       <span>Artist</span></a>
+  </li>
+  <!-- Nav Item - Genres -->
+  <li class="nav-item">
+    <a class="nav-link" href="<?php echo base_url(); ?>admin/genres">
+      <i class="fas fa-fw fa-table"></i>
+      <span>Genres</span></a>
+  </li>
+  <!-- Nav Item - Status -->
+  <li class="nav-item">
+    <a class="nav-link" href="<?php echo base_url(); ?>admin/status">
+      <i class="fas fa-fw fa-table"></i>
+      <span>Status</span></a>
+  </li>
+  <!-- Nav Item - Users -->
+  <li class="nav-item">
+    <a class="nav-link" href="<?php echo base_url(); ?>admin/users">
+      <i class="fas fa-fw fa-table"></i>
+      <span>User</span></a>
   </li>
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">

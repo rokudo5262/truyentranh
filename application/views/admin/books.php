@@ -1,7 +1,6 @@
 <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">ARTISTS</h1>
+          <!-- Page Heading -->AUTHORS</h1>
           <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
 
           <!-- DataTales Example -->
@@ -16,6 +15,7 @@
                     <tr>
                       <th>Id</th>
                       <th>Name</th>
+                      <th>Name</th>
                       <th>Created Date</th>
                       <th>Updated Date</th>
                     </tr>
@@ -24,17 +24,19 @@
                     <tr>
                       <th>Id</th>
                       <th>Name</th>
+                      <th>Name</th>
                       <th>Created Date</th>
                       <th>Updated Date</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                  <?php foreach ($artists as $artist):?>
+                  <?php foreach ($books as $book):?>
                     <tr>
-                      <td><?php echo $artist['id_artist']?></td>
-                      <td><?php echo $artist['name_artist']?></td>
-                      <td><?php echo $artist['created_datetime']?></td>
-                      <td><?php echo $artist['updated_datetime']?></td>
+                      <td><?php echo $book['id_book']?></td>
+                      <td><?php echo $book['name_book']?></td>
+                      <td><?php echo $book['name_book']?></td>
+                      <td><?php echo $book['created_datetime']?></td>
+                      <td><?php echo $book['updated_datetime']?></td>
                     </tr>
                   <?php endforeach?>
                   </tbody>

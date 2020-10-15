@@ -15,7 +15,7 @@
                   <thead>
                     <tr>
                       <th>Id</th>
-                      <th>Name</th>
+                      <th>Genre</th>
                       <th>Created Date</th>
                       <th>Updated Date</th>
                     </tr>
@@ -23,18 +23,18 @@
                   <tfoot>
                     <tr>
                       <th>Id</th>
-                      <th>Name</th>
+                      <th>Genre</th>
                       <th>Created Date</th>
                       <th>Updated Date</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                  <?php foreach ($artists as $artist):?>
+                  <?php foreach ($genres as $genre):?>
                     <tr>
-                      <td><?php echo $artist['id_artist']?></td>
-                      <td><?php echo $artist['name_artist']?></td>
-                      <td><?php echo $artist['created_datetime']?></td>
-                      <td><?php echo $artist['updated_datetime']?></td>
+                      <td><?php echo $genre['id_genre']?></td>
+                      <td><?php echo $genre['name_genre']?></td>
+                      <td><?php echo $genre['created_datetime']?></td>
+                      <td><?php echo $genre['updated_datetime']?></td>
                     </tr>
                   <?php endforeach?>
                   </tbody>

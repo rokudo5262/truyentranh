@@ -15,7 +15,8 @@
                   <thead>
                     <tr>
                       <th>Id</th>
-                      <th>Name</th>
+                      <th>Status</th>
+                      <th>Status</th>
                       <th>Created Date</th>
                       <th>Updated Date</th>
                     </tr>
@@ -23,18 +24,20 @@
                   <tfoot>
                     <tr>
                       <th>Id</th>
-                      <th>Name</th>
+                      <th>Status</th>
+                      <th>Status</th>
                       <th>Created Date</th>
                       <th>Updated Date</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                  <?php foreach ($artists as $artist):?>
+                  <?php foreach ($statuses as $status):?>
                     <tr>
-                      <td><?php echo $artist['id_artist']?></td>
-                      <td><?php echo $artist['name_artist']?></td>
-                      <td><?php echo $artist['created_datetime']?></td>
-                      <td><?php echo $artist['updated_datetime']?></td>
+                      <td><?php echo $status['id_status']?></td>
+                      <td><?php echo $status['name_status']?></td>
+                      <th><?php echo $status['name_status']?></th>
+                      <td><?php echo $status['created_datetime']?></td>
+                      <td><?php echo $status['updated_datetime']?></td>
                     </tr>
                   <?php endforeach?>
                   </tbody>
