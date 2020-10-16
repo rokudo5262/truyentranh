@@ -19,6 +19,8 @@
                       <th>Status</th>
                       <th>Created Date</th>
                       <th>Updated Date</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -28,6 +30,8 @@
                       <th>Status</th>
                       <th>Created Date</th>
                       <th>Updated Date</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -38,6 +42,8 @@
                       <th><?php echo $status['name_status']?></th>
                       <td><?php echo $status['created_datetime']?></td>
                       <td><?php echo $status['updated_datetime']?></td>
+                      <td><button type="submit" class="btn btn-success">Edit</button></td>
+                      <td><button type="submit" class="btn btn-danger">Delete</button></td>
                     </tr>
                   <?php endforeach?>
                   </tbody>

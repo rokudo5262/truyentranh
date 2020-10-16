@@ -18,6 +18,8 @@
                       <th>Genre</th>
                       <th>Created Date</th>
                       <th>Updated Date</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -26,6 +28,8 @@
                       <th>Genre</th>
                       <th>Created Date</th>
                       <th>Updated Date</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -35,6 +39,8 @@
                       <td><?php echo $genre['name_genre']?></td>
                       <td><?php echo $genre['created_datetime']?></td>
                       <td><?php echo $genre['updated_datetime']?></td>
+                      <td><button type="submit" class="btn btn-success">Edit</button></td>
+                      <td><button type="submit" class="btn btn-danger">Delete</button></td>
                     </tr>
                   <?php endforeach?>
                   </tbody>
