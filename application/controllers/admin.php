@@ -20,8 +20,9 @@ class admin extends CI_Controller
 	{
 		$email = $this->input->post('email');
 		$password = md5($this->input->post('password'));
-		$signin="Select * From admin Where gmail_admin='$email' And password_admin='$password'";
+		$signin="Select * From user Where gmail_user='$email' And password_user='$password'";
 		//var_dump($signin);
+		//var_dump($password);
 		$query = $this->truyentranh_model->query($signin);
 		if($query)
 		{
@@ -29,12 +30,17 @@ class admin extends CI_Controller
 			{
 				$newdata = array
 				(
-					'id_admin'=>$row['id_admin'],
-					'name_admin'=>$row['name_admin'],
-					'gmail_admin' =>$row['gmail_admin'],
-					'password_admin' => $row['password_admin'],
-					'gmail_admin' =>$row['gmail_admin'],
-					'password_admin' => $row['password_admin'],
+					'id_user'=>$row['id_user'],
+					'name_user'=>$row['name_user'],
+					'gmail_user' =>$row['gmail_user'],
+					'password_user' => $row['password_user'],
+					'firstname_user'=>$row['firstname_user'],
+					'middlename_user'=>$row['middlename_user'],
+					'lastname_user'=>$row['lastname_user'],
+					'avatar_user' =>$row['avatar_user'],
+					'deleted' => $row['deleted'],
+					'created_datetime' =>$row['created_datetime'],
+					'updated_datetime' => $row['updated_datetime'],
 				);
 				$this->session->set_userdata($newdata); 
 			}
@@ -56,7 +62,7 @@ class admin extends CI_Controller
 	{
 		//removing session  
 		$this->session->sess_destroy();  
-        redirect("login");  
+        redirect('admin/login');
 
 	}
 	public function register()
@@ -69,9 +75,10 @@ class admin extends CI_Controller
 	}
 	public function dashboard()
 	{
-		if ($this->session->userdata('id_admin')!='')
+		$data['dashboard']='active';
+		if ($this->session->userdata('id_user')!='')
 		{
-			$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',NULL,TRUE);
+			$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 			$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
 			$giaodien['content'] = $this->load->view('admin/dashboard',NULL,TRUE);
 			$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
@@ -79,131 +86,305 @@ class admin extends CI_Controller
 		}
 		else
 		{
-			redirect('login');
+			redirect('admin/login');
 		}
 	}
 	public function index()
 	{
-		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',NULL,TRUE);
+		$data['index']='active';
+		if ($this->session->userdata('id_user')!='')
+		{
+		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
 		$giaodien['content'] = $this->load->view('admin/dashboard',NULL,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
+		}
+		else
+		{
+			echo "<script> alert('Phiên đã hết hạn vui lòng đăng nhập lại.');</script>";
+			echo "<script> window.location.href='../admin/login';</script>";
+			//redirect('admin/login');
+		}
 	}
 	public function charts()
 	{
-		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',NULL,TRUE);
+		$data['charts']='active';
+		if ($this->session->userdata('id_user')!='')
+		{
+		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
 		$giaodien['content'] = $this->load->view('admin/charts',NULL,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
+		}
+		else
+		{
+			echo "<script> alert('Phiên đã hết hạn vui lòng đăng nhập lại.');</script>";
+			echo "<script> window.location.href='../admin/login';</script>";
+			//redirect('admin/login');
+		}
 	}
 	public function tables()
 	{
-		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',NULL,TRUE);
+		$data['tables']='active';
+		if ($this->session->userdata('id_user')!='')
+		{
+		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
 		$giaodien['content'] = $this->load->view('admin/tables',NULL,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
+		}
+		else
+		{
+			echo "<script> alert('Phiên đã hết hạn vui lòng đăng nhập lại.');</script>";
+			echo "<script> window.location.href='../admin/login';</script>";
+			//redirect('admin/login');
+		}
 	}
 	public function cards()
 	{
-		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',NULL,TRUE);
+		$data['cards']='active';
+		if ($this->session->userdata('id_user')!='')
+		{
+		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
 		$giaodien['content'] = $this->load->view('admin/cards',NULL,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
+		}
+		else
+		{
+			echo "<script> alert('Phiên đã hết hạn vui lòng đăng nhập lại.');</script>";
+			echo "<script> window.location.href='../admin/login';</script>";
+			//redirect('admin/login');
+		}
 	}
 	public function buttons()
 	{
-		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',NULL,TRUE);
+		$data['buttons']='active';
+		if ($this->session->userdata('id_user')!='')
+		{
+		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
 		$giaodien['content'] = $this->load->view('admin/buttons',NULL,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
+		}
+		else
+		{
+			echo "<script> alert('Phiên đã hết hạn vui lòng đăng nhập lại.');</script>";
+			echo "<script> window.location.href='../admin/login';</script>";
+			//redirect('admin/login');
+		}
 	}
-	public function animation()
+	public function animations()
 	{
-		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',NULL,TRUE);
+		$data['animations']='active';
+		if ($this->session->userdata('id_user')!='')
+		{
+		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
 		$giaodien['content'] = $this->load->view('admin/utilities-animation',NULL,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
+		}
+		else
+		{
+			echo "<script> alert('Phiên đã hết hạn vui lòng đăng nhập lại.');</script>";
+			echo "<script> window.location.href='../admin/login';</script>";
+			//redirect('admin/login');
+		}
 	}
-	public function border()
+	public function borders()
 	{
-		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',NULL,TRUE);
-		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
-		$giaodien['content'] = $this->load->view('admin/utilities-border',NULL,TRUE);
-		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
-		$this->load->view('admin/includes/index',$giaodien);
+		$data['borders']='active';
+		if ($this->session->userdata('id_user')!='')
+		{
+			$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
+			$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
+			$giaodien['content'] = $this->load->view('admin/utilities-border',NULL,TRUE);
+			$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
+			$this->load->view('admin/includes/index',$giaodien);
+		}
+		else
+		{
+			echo "<script> alert('Phiên đã hết hạn vui lòng đăng nhập lại.');</script>";
+			echo "<script> window.location.href='../admin/login';</script>";
+			//redirect('admin/login');
+		}
 	}
-	public function color()
+	public function colors()
 	{
-		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',NULL,TRUE);
+		$data['colors']='active';
+		if ($this->session->userdata('id_user')!='')
+		{
+		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
 		$giaodien['content'] = $this->load->view('admin/utilities-color',NULL,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
+		}
+		else
+		{
+			echo "<script> alert('Phiên đã hết hạn vui lòng đăng nhập lại.');</script>";
+			echo "<script> window.location.href='../admin/login';</script>";
+			//redirect('admin/login');
+		}
+	}
+	public function other()
+	{
+		$data['other']='active';
+		if ($this->session->userdata('id_user')!='')
+		{
+		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
+		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
+		$giaodien['content'] = $this->load->view('admin/utilities-other',NULL,TRUE);
+		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
+		$this->load->view('admin/includes/index',$giaodien);
+		}
+		else
+		{
+			echo "<script> alert('Phiên đã hết hạn vui lòng đăng nhập lại.');</script>";
+			echo "<script> window.location.href='../admin/login';</script>";
+			//redirect('admin/login');
+		}
 	}
 	public function books()
 	{
-		$books="select * from book";
+		$data['books']='active';
+		if ($this->session->userdata('id_user')!='')
+		{
+		$books="select * from book Where deleted='0'";
 		$data['books']=$this->truyentranh_model->query($books);
-		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',NULL,TRUE);
+		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
 		$giaodien['content'] = $this->load->view('admin/books',$data,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
+		}
+		else
+		{
+			echo "<script> alert('Phiên đã hết hạn vui lòng đăng nhập lại.');</script>";
+			echo "<script> window.location.href='../admin/login';</script>";
+			//redirect('admin/login');
+		}
 	}
 	public function authors()
 	{
-		$authors="select * from author";
+		$data['authors']='active';
+		if ($this->session->userdata('id_user')!='')
+		{
+		$authors="select * from author Where deleted='0'";
 		$data['authors']=$this->truyentranh_model->query($authors);
-		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',NULL,TRUE);
+		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
 		$giaodien['content'] = $this->load->view('admin/authors',$data,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
+		}
+		else
+		{
+			echo "<script> alert('Phiên đã hết hạn vui lòng đăng nhập lại.');</script>";
+			echo "<script> window.location.href='../admin/login';</script>";
+			//redirect('admin/login');
+		}
 	}
 	public function artists()
 	{
-		$artists="select * from artist";
+		$data['artists']='active';
+		if ($this->session->userdata('id_user')!='')
+		{
+		$artists="select * from artist Where deleted='0'";
 		$data['artists']=$this->truyentranh_model->query($artists);
-		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',NULL,TRUE);
+		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
 		$giaodien['content'] = $this->load->view('admin/artists',$data,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
+		}
+		else
+		{
+			echo "<script> alert('Phiên đã hết hạn vui lòng đăng nhập lại.');</script>";
+			echo "<script> window.location.href='../admin/login';</script>";
+			//redirect('admin/login');
+		}
 	}
 	public function genres()
 	{
-		$genres="select * from genre";
+		$data['genres']='active';
+		if ($this->session->userdata('id_user')!='')
+		{
+		$genres="select * from genre Where deleted='0'";
 		$data['genres']=$this->truyentranh_model->query($genres);
-		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',NULL,TRUE);
+		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
 		$giaodien['content'] = $this->load->view('admin/genres',$data,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
+		}
+		else
+		{
+			echo "<script> alert('Phiên đã hết hạn vui lòng đăng nhập lại.');</script>";
+			echo "<script> window.location.href='../admin/login';</script>";
+			//redirect('admin/login');
+		}
 	}
 	public function status()
 	{
-		$statuses="select * from status";
+		$data['status']='active';
+		if ($this->session->userdata('id_user')!='')
+		{
+		$statuses="select * from status Where deleted='0'";
 		$data['statuses']=$this->truyentranh_model->query($statuses);
-		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',NULL,TRUE);
+		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
 		$giaodien['content'] = $this->load->view('admin/statuses',$data,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
+		}
+		else
+		{
+			echo "<script> alert('Phiên đã hết hạn vui lòng đăng nhập lại.');</script>";
+			echo "<script> window.location.href='../admin/login';</script>";
+			//redirect('admin/login');
+		}
 	}
 	public function users()
 	{
-		$users="select * from user";
+		$data['users']='active';
+		if ($this->session->userdata('id_user')!='')
+		{
+		$users="select * from user Where deleted='0'";
 		$data['users']=$this->truyentranh_model->query($users);
-		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',NULL,TRUE);
+		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
 		$giaodien['content'] = $this->load->view('admin/users',$data,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
+		}
+		else
+		{
+			echo "<script> alert('Phiên đã hết hạn vui lòng đăng nhập lại.');</script>";
+			echo "<script> window.location.href='../admin/login';</script>";
+			//redirect('admin/login');
+		}
+	}
+	public function user_add()
+	{
+		//$add="INSERT INTO user (`id_user`, `name_user`, `gmail_user`, `password_user`, `firstname_user`, `middlename_user`, `lastname_user`, `avatar_user`, `admin_user`, `deleted`, `created_datetime`, `updated_datetime`) VALUES (NULL, '', '1234@gmail.com', '12345', 'Trịnh', 'Quang', 'Trường', 'unknow.png', '0', '0', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
+		$data=array
+		(
+			'gmail_user'=>$this->input->post('gmail'),
+			'password_user'=>$this->input->post('password'),
+
+		);
+		$this->truyentranh_model->insert('user',$data);
+		var_dump($data);
+	}
+	public function user_update()
+	{
+		
 	}
 }

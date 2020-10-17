@@ -35,8 +35,8 @@
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Custom Components:</h6>
-        <a class="collapse-item" href="<?php echo base_url(); ?>admin/buttons">Buttons</a>
-        <a class="collapse-item" href="<?php echo base_url(); ?>admin/cards">Cards</a>
+        <a class="collapse-item <?php echo isset($buttons)? "active" : "";  ?>" href="<?php echo base_url(); ?>admin/buttons">Buttons</a>
+        <a class="collapse-item <?php echo isset($cards)? "active" : "";  ?>" href="<?php echo base_url(); ?>admin/cards">Cards</a>
       </div>
     </div>
   </li>
@@ -50,10 +50,10 @@
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Custom Utilities:</h6>
-        <a class="collapse-item" href="utilities-color.html">Colors</a>
-        <a class="collapse-item" href="utilities-border.html">Borders</a>
-        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-        <a class="collapse-item" href="utilities-other.html">Other</a>
+        <a class="collapse-item <?php echo isset($colors)? "active" : "";  ?>" href="<?php echo base_url(); ?>admin/colors">Colors</a>
+        <a class="collapse-item <?php echo isset($borders)? "active" : "";  ?>" href="<?php echo base_url(); ?>admin/borders">Borders</a>
+        <a class="collapse-item <?php echo isset($animations)? "active" : "";  ?>" href="<?php echo base_url(); ?>admin/animations">Animations</a>
+        <a class="collapse-item <?php echo isset($other)? "active" : "";  ?>" href="<?php echo base_url(); ?>admin/other">Other</a>
       </div>
     </div>
   </li>
@@ -85,51 +85,51 @@
   </li>
 
   <!-- Nav Item - Charts -->
-  <li class="nav-item">
+  <li class="nav-item <?php echo isset($charts)? "active" : "";  ?>">
     <a class="nav-link" href="<?php echo base_url(); ?>admin/charts">
       <i class="fas fa-fw fa-chart-area"></i>
       <span>Charts</span></a>
   </li>
   <!-- Nav Item - Tables -->
-  <li class="nav-item">
+  <li class="nav-item <?php echo isset($tables)? "active" : "";  ?>">
     <a class="nav-link" href="<?php echo base_url(); ?>admin/tables">
       <i class="fas fa-fw fa-table"></i>
       <span>Tables</span></a>
   </li>
-  <!-- Nav Item - Manga -->
-  <li class="nav-item">
+  <!-- Nav Item - Books -->
+  <li class="nav-item <?php echo isset($books)? "active" : "";  ?>">
     <a class="nav-link" href="<?php echo base_url(); ?>admin/books">
-      <i class="fas fa-fw fa-table"></i>
-      <span>Manga</span></a>
+      <i class="fas fa-fw fa-book"></i>
+      <span>Books</span></a>
   </li>
   <!-- Nav Item - Authors -->
-  <li class="nav-item">
+  <li class="nav-item <?php echo isset($authors)? "active" : "";  ?>">
     <a class="nav-link" href="<?php echo base_url(); ?>admin/authors">
       <i class="fas fa-fw fa-table"></i>
       <span>Author</span></a>
   </li>
   <!-- Nav Item - Artists -->
-  <li class="nav-item">
+  <li class="nav-item <?php echo isset($artists)? "active" : "";  ?>">
     <a class="nav-link" href="<?php echo base_url(); ?>admin/artists">
       <i class="fas fa-fw fa-table"></i>
       <span>Artist</span></a>
   </li>
   <!-- Nav Item - Genres -->
-  <li class="nav-item">
+  <li class="nav-item <?php echo isset($genres)? "active" : "";  ?>">
     <a class="nav-link" href="<?php echo base_url(); ?>admin/genres">
       <i class="fas fa-fw fa-table"></i>
       <span>Genres</span></a>
   </li>
   <!-- Nav Item - Status -->
-  <li class="nav-item">
+  <li class="nav-item <?php echo isset($status)? "active" : "";  ?>">
     <a class="nav-link" href="<?php echo base_url(); ?>admin/status">
       <i class="fas fa-fw fa-table"></i>
       <span>Status</span></a>
   </li>
   <!-- Nav Item - Users -->
-  <li class="nav-item">
+  <li class="nav-item <?php echo isset($users)? "active" : "";  ?>">
     <a class="nav-link" href="<?php echo base_url(); ?>admin/users">
-      <i class="fas fa-fw fa-table"></i>
+      <i class="fas fa-fw fa-user"></i>
       <span>User</span></a>
   </li>
   <!-- Divider -->

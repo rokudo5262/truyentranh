@@ -230,7 +230,7 @@ class main extends CI_Controller
 			$this->load->view('home/master',$giaodien);
 		}
 	}
-	public function chitiet($id='')
+	public function detail($id='')
 	{
 		$random="SELECT * FROM book ORDER BY RAND() LIMIT 1";
 		$data['random']=$this->truyentranh_model->query($random);
@@ -275,14 +275,14 @@ class main extends CI_Controller
 		{
 			$giaodien['header'] = $this->load->view('home/header_signin',$data,TRUE);
 			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
-			$giaodien['body'] = $this->load->view('page/chitiet',$data,TRUE);
+			$giaodien['body'] = $this->load->view('page/detail',$data,TRUE);
 			$this->load->view('home/master',$giaodien);
 		}
 		else
 		{
 			$giaodien['header'] = $this->load->view('home/header_signout',$data,TRUE);
 			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
-			$giaodien['body'] = $this->load->view('page/chitiet',$data,TRUE);
+			$giaodien['body'] = $this->load->view('page/detail',$data,TRUE);
 			$this->load->view('home/master',$giaodien);
 		}
 	}

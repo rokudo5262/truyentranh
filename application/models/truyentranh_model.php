@@ -15,6 +15,11 @@ class truyentranh_model extends CI_Model
 		$id=$this->db->insert($table,$data);
 		return $this->db->insert_id();
 	}
+	public function update($id,$table=array())
+	{
+		$this->db->where($id);
+		$this->db->update($table);
+	}
 	public function check($gmail)
 	{
 	    $this->db->select('*'); 
@@ -24,4 +29,5 @@ class truyentranh_model extends CI_Model
 	    $result = $query->result_array();
 	    return $result;
 	}
+	
 }
