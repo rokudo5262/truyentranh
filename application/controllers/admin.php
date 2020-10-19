@@ -20,7 +20,7 @@ class admin extends CI_Controller
 	{
 		$email = $this->input->post('email');
 		$password = md5($this->input->post('password'));
-		$signin="Select * From user Where gmail_user='$email' And password_user='$password'";
+		$signin="Select * From user Where gmail_user='$email' And password_user='$password' And deleted='0' And admin_user='1'";
 		//var_dump($signin);
 		//var_dump($password);
 		$query = $this->truyentranh_model->query($signin);
@@ -260,7 +260,7 @@ class admin extends CI_Controller
 		$data['books']=$this->truyentranh_model->query($books);
 		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
-		$giaodien['content'] = $this->load->view('admin/books',$data,TRUE);
+		$giaodien['content'] = $this->load->view('admin/pages/books',$data,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
 		}
@@ -280,7 +280,7 @@ class admin extends CI_Controller
 		$data['authors']=$this->truyentranh_model->query($authors);
 		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
-		$giaodien['content'] = $this->load->view('admin/authors',$data,TRUE);
+		$giaodien['content'] = $this->load->view('admin/pages/authors',$data,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
 		}
@@ -300,7 +300,7 @@ class admin extends CI_Controller
 		$data['artists']=$this->truyentranh_model->query($artists);
 		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
-		$giaodien['content'] = $this->load->view('admin/artists',$data,TRUE);
+		$giaodien['content'] = $this->load->view('admin/pages/artists',$data,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
 		}
@@ -320,7 +320,7 @@ class admin extends CI_Controller
 		$data['genres']=$this->truyentranh_model->query($genres);
 		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
-		$giaodien['content'] = $this->load->view('admin/genres',$data,TRUE);
+		$giaodien['content'] = $this->load->view('admin/pages/genres',$data,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
 		}
@@ -340,7 +340,7 @@ class admin extends CI_Controller
 		$data['statuses']=$this->truyentranh_model->query($statuses);
 		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
-		$giaodien['content'] = $this->load->view('admin/statuses',$data,TRUE);
+		$giaodien['content'] = $this->load->view('admin/pages/statuses',$data,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
 		}
@@ -360,7 +360,7 @@ class admin extends CI_Controller
 		$data['users']=$this->truyentranh_model->query($users);
 		$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar',$data,TRUE);
 		$giaodien['topbar'] = $this->load->view('admin/includes/topbar','',TRUE);
-		$giaodien['content'] = $this->load->view('admin/users',$data,TRUE);
+		$giaodien['content'] = $this->load->view('admin/pages/users',$data,TRUE);
 		$giaodien['footer'] = $this->load->view('admin/includes/footer',NULL,TRUE);
 		$this->load->view('admin/includes/index',$giaodien);
 		}
@@ -373,18 +373,87 @@ class admin extends CI_Controller
 	}
 	public function user_add()
 	{
-		//$add="INSERT INTO user (`id_user`, `name_user`, `gmail_user`, `password_user`, `firstname_user`, `middlename_user`, `lastname_user`, `avatar_user`, `admin_user`, `deleted`, `created_datetime`, `updated_datetime`) VALUES (NULL, '', '1234@gmail.com', '12345', 'Trịnh', 'Quang', 'Trường', 'unknow.png', '0', '0', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
+		//$add="INSERT INTO user (`id_user`, `name_user`, `gmail_user`, `password_user`, `firstname_user`, `middlename_user`, `lastname_user`, `avatar_user`, `admin_user`, `deleted`, `created_datetime`, `updated_datetime`) 
+		//VALUES (NULL, '', '1234@gmail.com', '12345', 'Trịnh', 'Quang', 'Trường', 'unknow.png', '0', '0', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
 		$data=array
 		(
 			'gmail_user'=>$this->input->post('gmail'),
 			'password_user'=>$this->input->post('password'),
-
+			//'deleted'=>$this->input->post('deleted'),
+			//'created_datetime'=>$this->input->post('created_datetime'),
+			//'updated_datetime'=>$this->input->post('updated_datetime'),
 		);
 		$this->truyentranh_model->insert('user',$data);
-		var_dump($data);
+		//var_dump($data);
+		redirect('admin/users');
 	}
-	public function user_update()
+	public function book_add()
 	{
-		
+		$data=array
+		(
+			//'deleted'=>$this->input->post('deleted'),
+			//'created_datetime'=>$this->input->post('created_datetime'),
+			//'updated_datetime'=>$this->input->post('updated_datetime'),
+		);
+		$this->truyentranh_model->insert('user',$data);
+		//var_dump($data);
+		redirect('admin/users');
+	}
+	public function genre_add()
+	{
+		$data=array
+		(
+			'name_genre'=>$this->input->post('genre'),
+			'description_genre'=>$this->input->post('description'),
+			'description_genre'=>$this->input->post('description'),
+			//'deleted'=>$this->input->post('deleted'),
+			//'created_datetime'=>$this->input->post('created_datetime'),
+			//'updated_datetime'=>$this->input->post('updated_datetime'),
+		);
+		$this->truyentranh_model->insert('genre',$data);
+		//var_dump($data);
+		redirect('admin/genres');
+	}
+	public function authors_add()
+	{
+		$data=array
+		(
+			'name_genre'=>$this->input->post('genre'),
+			'description_genre'=>$this->input->post('description'),
+			//'deleted'=>$this->input->post('deleted'),
+			//'created_datetime'=>$this->input->post('created_datetime'),
+			//'updated_datetime'=>$this->input->post('updated_datetime'),
+		);
+		$this->truyentranh_model->insert('author',$data);
+		//var_dump($data);
+		redirect('admin/authors');
+	}
+	public function artist_add()
+	{
+		$data=array
+		(
+			'name_artist'=>$this->input->post('genre'),
+			'description_genre'=>$this->input->post('description'),
+			//'deleted'=>$this->input->post('deleted'),
+			//'created_datetime'=>$this->input->post('created_datetime'),
+			//'updated_datetime'=>$this->input->post('updated_datetime'),
+		);
+		$this->truyentranh_model->insert('artist',$data);
+		//var_dump($data);
+		redirect('admin/artists');
+	}
+	public function status_add()
+	{
+		$data=array
+		(
+			'name_status'=>$this->input->post('status'),
+			'description_status'=>$this->input->post('description'),
+			//'deleted'=>$this->input->post('deleted'),
+			//'created_datetime'=>$this->input->post('created_datetime'),
+			//'updated_datetime'=>$this->input->post('updated_datetime'),
+		);
+		$this->truyentranh_model->insert('status',$data);
+		//var_dump($data);
+		redirect('admin/statuses');
 	}
 }

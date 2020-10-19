@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
   <!-- Page Heading -->
-  <h1 class="h3 mb-2 text-gray-800">Status</h1>
+  <h1 class="h3 mb-2 text-gray-800">ARTISTS</h1>
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -13,8 +13,7 @@
           <thead>
             <tr>
               <th>Id</th>
-              <th>Status</th>
-              <th>Status</th>
+              <th>Name</th>
               <th>Created Date</th>
               <th>Updated Date</th>
               <th>Edit</th>
@@ -24,8 +23,7 @@
           <tfoot>
             <tr>
               <th>Id</th>
-              <th>Status</th>
-              <th>Status</th>
+              <th>Name</th>
               <th>Created Date</th>
               <th>Updated Date</th>
               <th>Edit</th>
@@ -33,13 +31,12 @@
             </tr>
           </tfoot>
           <tbody>
-            <?php foreach ($statuses as $status) : ?>
+            <?php foreach ($artists as $artist) : ?>
               <tr>
-                <td><?php echo $status['id_status'] ?></td>
-                <td><?php echo $status['name_status'] ?></td>
-                <th><?php echo $status['name_status'] ?></th>
-                <td><?php echo $status['created_datetime'] ?></td>
-                <td><?php echo $status['updated_datetime'] ?></td>
+                <td><?php echo $artist['id_artist'] ?></td>
+                <td><?php echo $artist['name_artist'] ?></td>
+                <td><?php echo $artist['created_datetime'] ?></td>
+                <td><?php echo $artist['updated_datetime'] ?></td>
                 <td><button type="submit" class="btn btn-success">Edit</button></td>
                 <td><button type="submit" class="btn btn-danger">Delete</button></td>
               </tr>
@@ -49,21 +46,44 @@
       </div>
     </div>
   </div>
+
 </div>
 <!-- Add Modal-->
 <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+      <div class="modal-body">
+        
+      </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <a class="btn btn-primary" href="<?php echo base_url(); ?>admin/login">Logout</a>
+        <a class="btn btn-primary" href="">Add Artist</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Update Modal-->
+<div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Artist</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        <a class="btn btn-primary" href="">Update</a>
       </div>
     </div>
   </div>

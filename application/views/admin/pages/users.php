@@ -43,7 +43,7 @@
                 <td><?php echo $user['password_user'] ?></td>
                 <td><?php echo $user['created_datetime'] ?></td>
                 <td><?php echo $user['updated_datetime'] ?></td>
-                <td><button type="submit" class="btn btn-success">Edit</button></td>
+                <td><button type="submit" class="btn btn-success"data-toggle="modal" data-target="#update" >Edit</button></td>
                 <td><button type="submit" class="btn btn-danger">Delete</button></td>
               </tr>
             <?php endforeach ?>
@@ -59,16 +59,47 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+      <div class="modal-body">
+        
+      </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <a class="btn btn-primary" href="<?php echo base_url(); ?>admin/login">Logout</a>
+        <a class="btn btn-primary" href="">Add</a>
       </div>
+    </div>
+  </div>
+</div>
+<!-- Update Modal-->
+<div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <form action="" class="user" method="post" enctype="multipart/form-data">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update User</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Genre</label>
+            <input type="text" class="form-control form-control-user" id="genre" name="genre" placeholder="Genre name">
+          </div>
+          <div class="form-group">
+            <label>Discription</label>
+            <textarea type="text" class="form-control form-control-user" id="description" name="description" placeholder="Genre Description"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="">Update</a>
+        </div>
+      </form>
     </div>
   </div>
 </div>
