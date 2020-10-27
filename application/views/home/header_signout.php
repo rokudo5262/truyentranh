@@ -65,13 +65,13 @@
             <div class="form-group">
               <p>
                 <label>Gmail</label>
-                <input type="gmail" name="gmail" id="gmail" class="form-control form-control-user" required="">
+                <input type="gmail" name="gmail" id="gmail" class="form-control" required="">
               </p>
             </div>
             <div class="form-group">
               <p>
                 <label>Mật Khẩu</label>
-                <input type="password" name="password" id="password" class="form-control form-control-user" required="">
+                <input type="password" name="password" id="password" class="form-control" required="">
               </p>
             </div>
           </div>
@@ -99,19 +99,19 @@
           <div class="form-group">
             <p>
               <label>Email</label>
-              <input type="email" class="form-control form-control-user" name="gmail" class="form-control" required="">
+              <input type="email" class="form-control" name="gmail" class="form-control" required="">
             </p>
           </div>
           <div class="form-group">
             <p>
               <label>Mật Khẩu</label>
-              <input type="password" class="form-control form-control-user" name="password" class="form-control" required="">
+              <input type="password" class="form-control" name="password" class="form-control" required="">
             </p>
           </div>
           <div class="form-group">
             <p>
               <label>Nhập Lại Mật Khẩu</label>
-              <input type="password" class="form-control form-control-user" name="comfirm_password" class="form-control" required="">
+              <input type="password" class="form-control" name="comfirm_password" class="form-control" required="">
             </p>
             </div>
         </div>

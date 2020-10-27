@@ -77,7 +77,7 @@ class main extends CI_Controller
 /********************************************************************************************************************************************************************************************************************************************************************/
 	public function trangchu()
 	{
-		$chapter_book="SELECT * FROM book INNER JOIN chapter ON chapter.id_book = book.id_book order by date_chapter desc";
+		$chapter_book="SELECT * FROM book INNER JOIN chapter ON chapter.id_book = book.id_book";
 		$data['chapter_book']=$this->truyentranh_model->query($chapter_book);
 		/*****/
 		$random="SELECT * FROM book ORDER BY RAND() LIMIT 1";
@@ -244,7 +244,7 @@ class main extends CI_Controller
 		$artist_book="SELECT * FROM ( ( artist_book INNER JOIN artist ON artist.id_artist = artist_book.id_artist ) INNER JOIN book ON artist_book.id_book = book.id_book ) WHERE artist_book.id_book = $id";
 		$data['artist_book']=$this->truyentranh_model->query($artist_book);
 		/*****/
-		$chapter_book="SELECT * FROM book INNER JOIN chapter ON chapter.id_book = book.id_book WHERE book.id_book=$id order by date_chapter desc";
+		$chapter_book="SELECT * FROM book INNER JOIN chapter ON chapter.id_book = book.id_book WHERE book.id_book=$id";
 		$data['chapter_book']=$this->truyentranh_model->query($chapter_book);
 		/*****/
 		$type_book="SELECT * FROM book INNER JOIN type ON type.id_type = book.id_type WHERE book.id_book=$id";
@@ -302,7 +302,7 @@ class main extends CI_Controller
             $newdata=$row['id_book'];
         }      
 		/*****/
-		$chapter_book="SELECT * FROM book INNER JOIN chapter ON chapter.id_book = book.id_book where chapter.id_book=$newdata order by date_chapter desc";
+		$chapter_book="SELECT * FROM book INNER JOIN chapter ON chapter.id_book = book.id_book where chapter.id_book=$newdata order by created_datetime desc";
 		$data['chapter_book']=$this->truyentranh_model->query($chapter_book);
 		/*****/
 		$random="SELECT * FROM book ORDER BY RAND() LIMIT 1";

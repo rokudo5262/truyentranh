@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-</head>
-<body>
 <div class="container-fluid">
 	<div class="card">
 		<div class="card-header text-white bg-primary">
-			<h5>Mới Nhất</h5>
+		<div class="card-title">Mới Nhất</div>
 		</div>
 		<div class="card-body">
 			
@@ -16,5 +11,3 @@
 		</div>
 	</div>
 </div>
-</body>
-</html>
