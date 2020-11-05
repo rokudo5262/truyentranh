@@ -1,7 +1,7 @@
 <!-- Footer -->
 <footer class="page-footer font-small indigo">
   <!-- Footer Links -->
-  <div class="container text-center text-md-left">
+  <div class="container-fluid text-center text-md-left">
     <!-- Grid row -->
     <div class="row bg-primary">
       <!-- Grid column -->

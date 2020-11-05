@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
 	<div class="card">
 		<div class="card-header text-white bg-primary">
 		<div class="card-title">Mới Nhất</div>

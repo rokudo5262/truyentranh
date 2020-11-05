@@ -34,7 +34,7 @@
               <tr>
                 <td><?php echo $book['id_book'] ?></td>
                 <td><?php echo $book['name_book'] ?></td>
-                <td><img class="rounded" width="40" height="40" src="<?php echo base_url();?>asset/images/<?php echo $book['img_book'] ?>"></td>
+                <td><img class="rounded" width="40" height="40" src="<?php echo base_url();?>asset/images/book/<?php echo $book['image_book'] ?>"></td>
                 <td><a type="button" href="<?php echo base_url();?>admin/book/<?php echo $book['id_book'] ?>" class="btn btn-primary btn-sm">Detail</a></td>
                 <td><button type="submit" class="btn btn-success btn-sm" data-toggle="modal" data-target="#update">Edit</button></td>
                 <td><button type="submit" class="btn btn-danger btn-sm">Delete</button></td>

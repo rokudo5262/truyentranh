@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class main extends CI_Controller
 {
@@ -19,316 +19,215 @@ class main extends CI_Controller
 	public function signin()
 	{
 		$gmail = $this->input->post('gmail');
-       	$password = md5($this->input->post('password'));
-       	$signin="Select * from user where gmail_user='$gmail' And password_user='$password'";
-        $query = $this->truyentranh_model->query($signin);
-        if($query)
-        {
-            foreach($query as $row)
-            {
-                $newdata = array
-                (
-                	'id_user'=>$row['id_user'],
-                	'name_user'=>$row['name_user'],
-                	'gmail_user' =>$row['gmail_user'],
-                	'password_user' => $row['password_user'],
-                	'summary_user'=> $row['summary_user']
-                );
-                $this->session->set_userdata($newdata); 
-            }                
-            redirect('main/trangchu');
-        }
-        else
-	    {
-	        echo "<script> alert('Đăng nhập không thành công');</script>";
-	        echo "<script> window.location.href='../main/trangchu';</script>";
-	    } 
+		$password = md5($this->input->post('password'));
+		$signin = "Select * from user where gmail_user='$gmail' And password_user='$password'";
+		$query = $this->truyentranh_model->query($signin);
+		if ($query) {
+			foreach ($query as $row) {
+				$newdata = array(
+					'id_user' => $row['id_user'],
+					'name_user' => $row['name_user'],
+					'gmail_user' => $row['gmail_user'],
+					'password_user' => $row['password_user'],
+					'summary_user' => $row['summary_user']
+				);
+				$this->session->set_userdata($newdata);
+			}
+			redirect('main/trangchu');
+		} else {
+			echo "<script> alert('Đăng nhập không thành công');</script>";
+			echo "<script> window.location.href='../main/trangchu';</script>";
+		}
 	}
-/********************************************************************************************************************************************************************************************************************************************************************/
+	/********************************************************************************************************************************************************************************************************************************************************************/
 	public function signout()
 	{
 		$this->session->sess_destroy();
-    	redirect('main/trangchu');
+		redirect('main/trangchu');
 	}
-/********************************************************************************************************************************************************************************************************************************************************************/
+	/********************************************************************************************************************************************************************************************************************************************************************/
 	public function signup()
 	{
 		$gmail = $this->input->post('gmail');
-	    $exists = $this->truyentranh_model->check($gmail);
-	    $count = count($exists);
-	    if (empty($count)) 
-	    {
-		    	$data=array
-			(
-				'gmail_user'=>$this->input->post('gmail'),
-				'name_user'=>$this->input->post('gmail'),
-				'password_user'=>md5($this->input->post('password'))
+		$exists = $this->truyentranh_model->check($gmail);
+		$count = count($exists);
+		if (empty($count)) {
+			$data = array(
+				'gmail_user' => $this->input->post('gmail'),
+				'name_user' => $this->input->post('gmail'),
+				'password_user' => md5($this->input->post('password'))
 			);
-			$this->truyentranh_model->insert('user',$data);
+			$this->truyentranh_model->insert('user', $data);
 			echo "<script> alert('Đăng ký thành công');</script>";
 			echo "<script> window.location.href='../main/trangchu';</script>";
-	    } 
-	    else 
-	    {
-	    	echo "<script> alert('Đăng ký không thành công gmail đã tồn tại');</script>";
-	    	echo "<script> window.location.href='../main/trangchu';</script>";
-	    }
-	}		
-/********************************************************************************************************************************************************************************************************************************************************************/
+		} else {
+			echo "<script> alert('Đăng ký không thành công gmail đã tồn tại');</script>";
+			echo "<script> window.location.href='../main/trangchu';</script>";
+		}
+	}
+	/********************************************************************************************************************************************************************************************************************************************************************/
 	public function trangchu()
 	{
-		$chapter_book="SELECT * FROM book INNER JOIN chapter ON chapter.id_book = book.id_book";
-		$data['chapter_book']=$this->truyentranh_model->query($chapter_book);
+		$data['books'] = $this->truyentranh_model->limit('*', 'book', array('id_book' > 0), 'created_datetime', 15);
+		$chapter_book = "SELECT * FROM book INNER JOIN chapter ON chapter.id_book = book.id_book";
+		$data['chapter_book'] = $this->truyentranh_model->query($chapter_book);
 		/*****/
-		$random="SELECT * FROM book ORDER BY RAND() LIMIT 1";
-		$data['random']=$this->truyentranh_model->query($random);
-		$type="select * from type";
-		$data['type']=$this->truyentranh_model->query($type);
-		$status="Select * from status";
-		$data['status']=$this->truyentranh_model->query($status);
-		$genre="Select * from genre order by name_genre";
-		$data['genre']=$this->truyentranh_model->query($genre);
-		$book="select * from book";
-		$data['book']=$this->truyentranh_model->query($book);
-		if ($this->session->userdata('id_user')!='')
-		{
-			$giaodien['header'] = $this->load->view('home/header_signin',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
-			$giaodien['body'] = $this->load->view('page/trangchu',$data,TRUE);
-			$this->load->view('home/master',$giaodien);
-		}
-		else
-		{
-			$giaodien['header'] = $this->load->view('home/header_signout',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
-			$giaodien['body'] = $this->load->view('page/trangchu',$data,TRUE);
-			$this->load->view('home/master',$giaodien);
-		}
-
+		$random = "SELECT * FROM book ORDER BY RAND() LIMIT 1";
+		$data['random'] = $this->truyentranh_model->query($random);
+		$type = "select * from type";
+		$data['type'] = $this->truyentranh_model->query($type);
+		$status = "Select * from status";
+		$data['status'] = $this->truyentranh_model->query($status);
+		$genre = "Select * from genre order by name_genre";
+		$data['genre'] = $this->truyentranh_model->query($genre);
+		$book = "select * from book";
+		$data['book'] = $this->truyentranh_model->query($book);
+		//
+		$giaodien['header'] = $this->load->view('home/header', $data, TRUE);
+		$giaodien['footer'] = $this->load->view('home/footer', NULL, TRUE);
+		$giaodien['body'] = $this->load->view('page/trangchu', $data, TRUE);
+		$this->load->view('home/master', $giaodien);
 	}
 	public function canhan()
-	{	
-		$random="SELECT * FROM book ORDER BY RAND() LIMIT 1";
-		$data['random']=$this->truyentranh_model->query($random);
-		$type="select * from type";
-		$data['type']=$this->truyentranh_model->query($type);
-		$status="Select * from status";
-		$data['status']=$this->truyentranh_model->query($status);
-		$genre="Select * from genre";
-		$data['genre']=$this->truyentranh_model->query($genre);
-		$book="select * from book";
-		$data['book']=$this->truyentranh_model->query($book);
-		$book="select * from user";
-		$data['user']=$this->truyentranh_model->query($book);
-		if ($this->session->userdata('id_user')!='')
-		{
-			$giaodien['header'] = $this->load->view('home/header_signin',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
-			$giaodien['body'] = $this->load->view('page/canhan',$data,TRUE);
-			$this->load->view('home/master',$giaodien);
-		}
-		else
-		{
-			$giaodien['header'] = $this->load->view('home/header_signout',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
-			$giaodien['body'] = $this->load->view('page/canhan',$data,TRUE);
-			$this->load->view('home/master',$giaodien);
-		}
+	{
+		$random = "SELECT * FROM book ORDER BY RAND() LIMIT 1";
+		$data['random'] = $this->truyentranh_model->query($random);
+		$type = "select * from type";
+		$data['type'] = $this->truyentranh_model->query($type);
+		$status = "Select * from status";
+		$data['status'] = $this->truyentranh_model->query($status);
+		$genre = "Select * from genre";
+		$data['genre'] = $this->truyentranh_model->query($genre);
+		$book = "select * from book";
+		$data['book'] = $this->truyentranh_model->query($book);
+		$book = "select * from user";
+		$data['user'] = $this->truyentranh_model->query($book);
+		//
+		$giaodien['header'] = $this->load->view('home/header', $data, TRUE);
+		$giaodien['footer'] = $this->load->view('home/footer', NULL, TRUE);
+		$giaodien['body'] = $this->load->view('page/canhan', $data, TRUE);
+		$this->load->view('home/master', $giaodien);
 	}
 	public function timkiemnangcao()
 	{
-		$random="SELECT * FROM book ORDER BY RAND() LIMIT 1";
-		$data['random']=$this->truyentranh_model->query($random);
-		$type="select * from type";
-		$data['type']=$this->truyentranh_model->query($type);
-		$status="Select * from status";
-		$data['status']=$this->truyentranh_model->query($status);
-		$genre="Select * from genre";
-		$data['genre']=$this->truyentranh_model->query($genre);
-		$book="select * from book";
-		$data['book']=$this->truyentranh_model->query($book);
-		$book="select * from user";
-		$data['user']=$this->truyentranh_model->query($book);
-		if ($this->session->userdata('id_user')!='')
-		{
-			$giaodien['header'] = $this->load->view('home/header_signin',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
-			$giaodien['body'] = $this->load->view('page/timkiemnangcao',$data,TRUE);
-			$this->load->view('home/master',$giaodien);
-		}
-		else
-		{
-			$giaodien['header'] = $this->load->view('home/header_signout',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
-			$giaodien['body'] = $this->load->view('page/timkiemnangcao',$data,TRUE);
-			$this->load->view('home/master',$giaodien);
-		}
+		$random = "SELECT * FROM book ORDER BY RAND() LIMIT 1";
+		$data['random'] = $this->truyentranh_model->query($random);
+		$type = "select * from type";
+		$data['type'] = $this->truyentranh_model->query($type);
+		$status = "Select * from status";
+		$data['status'] = $this->truyentranh_model->query($status);
+		$genre = "Select * from genre";
+		$data['genre'] = $this->truyentranh_model->query($genre);
+		$book = "select * from book";
+		$data['book'] = $this->truyentranh_model->query($book);
+		$book = "select * from user";
+		$data['user'] = $this->truyentranh_model->query($book);
+		//
+		$giaodien['header'] = $this->load->view('home/header', $data, TRUE);
+		$giaodien['footer'] = $this->load->view('home/footer', NULL, TRUE);
+		$giaodien['body'] = $this->load->view('page/timkiemnangcao', $data, TRUE);
+		$this->load->view('home/master', $giaodien);
 	}
-	public function moinhat()
+	public function genre($id = '')
 	{
-		$random="SELECT * FROM book ORDER BY RAND() LIMIT 1";
-		$data['random']=$this->truyentranh_model->query($random);
-		$type="select * from type";
-		$data['type']=$this->truyentranh_model->query($type);
-		$status="Select * from status";
-		$data['status']=$this->truyentranh_model->query($status);
-		$genre="Select * from genre";
-		$data['genre']=$this->truyentranh_model->query($genre);
-		$book="select * from book";
-		$data['book']=$this->truyentranh_model->query($book);
-		$book="select * from user";
-		$data['user']=$this->truyentranh_model->query($book);
-		if ($this->session->userdata('id_user')!='')
-		{
-			$giaodien['header'] = $this->load->view('home/header_signin',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
-			$giaodien['body'] = $this->load->view('page/moinhat',$data,TRUE);
-			$this->load->view('home/master',$giaodien);
-		}
-		else
-		{
-			$giaodien['header'] = $this->load->view('home/header_signout',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
-			$giaodien['body'] = $this->load->view('page/moinhat',$data,TRUE);
-			$this->load->view('home/master',$giaodien);
-		}
+		$genre_book = "SELECT * FROM ( ( genre_book INNER JOIN genre ON genre.id_genre = genre_book.id_genre ) INNER JOIN book ON genre_book.id_book = book.id_book ) WHERE genre_book.id_genre = $id";
+		$data['genre_book'] = $this->truyentranh_model->query($genre_book);
+		/*****/
+		$book_genre = "SELECT * FROM ( ( genre_book INNER JOIN genre ON genre.id_genre = genre_book.id_genre ) INNER JOIN book ON genre_book.id_book = book.id_book ) WHERE genre_book.id_book = $id";
+		$data['book_genre'] = $this->truyentranh_model->query($book_genre);
+		/*****/
+		$random = "SELECT * FROM book ORDER BY RAND() LIMIT 1";
+		$data['random'] = $this->truyentranh_model->query($random);
+		$type = "select * from type";
+		$data['type'] = $this->truyentranh_model->query($type);
+		$status = "Select * from status";
+		$data['status'] = $this->truyentranh_model->query($status);
+		$genre = "Select * from genre";
+		$data['genre'] = $this->truyentranh_model->query($genre);
+		$book = "select * from book";
+		$data['book'] = $this->truyentranh_model->query($book);
+		$book = "select * from user";
+		$data['user'] = $this->truyentranh_model->query($book);
+		$id_genre = "Select * from genre where id_genre=$id";
+		$data['id_genre'] = $this->truyentranh_model->query($id_genre);
+		//
+		$giaodien['header'] = $this->load->view('home/header', $data, TRUE);
+		$giaodien['footer'] = $this->load->view('home/footer', NULL, TRUE);
+		$giaodien['body'] = $this->load->view('page/genre', $data, TRUE);
+		$this->load->view('home/master', $giaodien);
 	}
-	public function genre($id='')
+	public function detail($id = '')
 	{
-		$genre_book="SELECT * FROM ( ( genre_book INNER JOIN genre ON genre.id_genre = genre_book.id_genre ) INNER JOIN book ON genre_book.id_book = book.id_book ) WHERE genre_book.id_genre = $id";
-		$data['genre_book']=$this->truyentranh_model->query($genre_book);
-		/*****/
-		$book_genre="SELECT * FROM ( ( genre_book INNER JOIN genre ON genre.id_genre = genre_book.id_genre ) INNER JOIN book ON genre_book.id_book = book.id_book ) WHERE genre_book.id_book = $id";
-		$data['book_genre']=$this->truyentranh_model->query($book_genre);
-		/*****/
-		$random="SELECT * FROM book ORDER BY RAND() LIMIT 1";
-		$data['random']=$this->truyentranh_model->query($random);
-		$type="select * from type";
-		$data['type']=$this->truyentranh_model->query($type);
-		$status="Select * from status";
-		$data['status']=$this->truyentranh_model->query($status);
-		$genre="Select * from genre";
-		$data['genre']=$this->truyentranh_model->query($genre);
-		$book="select * from book";
-		$data['book']=$this->truyentranh_model->query($book);
-		$book="select * from user";
-		$data['user']=$this->truyentranh_model->query($book);
-		$id_genre="Select * from genre where id_genre=$id";
-		$data['id_genre']=$this->truyentranh_model->query($id_genre);
-		if ($this->session->userdata('id_user')!='')
-		{
-			$giaodien['header'] = $this->load->view('home/header_signin',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
-			$giaodien['body'] = $this->load->view('page/genre',$data,TRUE);
-			$this->load->view('home/Master',$giaodien);
-		}
-		else
-		{
-			$giaodien['header'] = $this->load->view('home/header_signout',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
-			$giaodien['body'] = $this->load->view('page/genre',$data,TRUE);
-			$this->load->view('home/master',$giaodien);
-		}
+		$book = "select * from book Where id_book=$id and deleted='0' LIMIT 1";
+		$data['book'] = $this->truyentranh_model->query($book);
+		//
+		$author = "SELECT * FROM ( ( role INNER JOIN author ON author.id_author = role.id_author ) INNER JOIN book ON book.id_book = role.id_book ) where role.id_book=$id and role.role='0'";
+		$data['book_author'] = $this->truyentranh_model->query($author);
+		//
+		$artist = "SELECT * FROM ( ( role INNER JOIN author ON author.id_author = role.id_author ) INNER JOIN book ON book.id_book = role.id_book ) where role.id_book=$id and role.role='1'";
+		$data['book_artist'] = $this->truyentranh_model->query($artist);
+		//
+		$genre = "SELECT * FROM ( ( genre_book INNER JOIN genre ON genre.id_genre = genre_book.id_genre ) INNER JOIN book ON book.id_book = genre_book.id_book ) where genre_book.id_book=$id";
+		$data['book_genre'] = $this->truyentranh_model->query($genre);
+		//
+		$alternative = "SELECT * FROM ( alternative INNER JOIN book ON alternative.id_book = book.id_book ) where alternative.id_book=$id";
+		$data['alternative'] = $this->truyentranh_model->query($alternative);
+		//
+		$chapter = "SELECT * FROM ( chapter INNER JOIN book ON chapter.id_book = book.id_book ) where chapter.id_book=$id";
+		$data['chapter'] = $this->truyentranh_model->query($chapter);
+		//
+		$type = "SELECT * FROM ( book INNER JOIN type ON book.id_type = type.id_type ) where book.id_book=$id";
+		$data['book_type'] = $this->truyentranh_model->query($type);
+		//
+		$status = "SELECT * FROM ( book INNER JOIN status ON book.id_status = status.id_status ) where book.id_book=$id";
+		$data['book_status'] = $this->truyentranh_model->query($status);
+		//
+		$random = "SELECT * FROM book ORDER BY RAND() LIMIT 1";
+		$data['random'] = $this->truyentranh_model->query($random);
+		$type = "select * from type";
+		$data['type'] = $this->truyentranh_model->query($type);
+		$status = "Select * from status";
+		$data['status'] = $this->truyentranh_model->query($status);
+		$genre = "Select * from genre";
+		$data['genre'] = $this->truyentranh_model->query($genre);
+		//
+		$giaodien['header'] = $this->load->view('home/header', $data, TRUE);
+		$giaodien['footer'] = $this->load->view('home/footer', NULL, TRUE);
+		$giaodien['body'] = $this->load->view('page/detail', $data, TRUE);
+		$this->load->view('home/master', $giaodien);
 	}
-	public function detail($id='')
+	public function doctruyen($id = '')
 	{
-		$random="SELECT * FROM book ORDER BY RAND() LIMIT 1";
-		$data['random']=$this->truyentranh_model->query($random);
+		$page = "Select * from page where id_chapter=$id";
+		$data['page'] = $this->truyentranh_model->query($page);
 		/*****/
-		$author_book="SELECT * FROM ( ( author_book INNER JOIN author ON author.id_author = author_book.id_author ) INNER JOIN book ON author_book.id_book = book.id_book ) WHERE author_book.id_book = $id";
-		$data['author_book']=$this->truyentranh_model->query($author_book);
+		$chapter_page = "SELECT * FROM chapter INNER JOIN page ON chapter.id_chapter = page.id_chapter WHERE chapter.id_chapter=$id";
+		$data['chapter_page'] = $this->truyentranh_model->query($chapter_page);
 		/*****/
-		$genre_book="SELECT * FROM ( ( genre_book INNER JOIN genre ON genre.id_genre = genre_book.id_genre ) INNER JOIN book ON genre_book.id_book = book.id_book ) WHERE genre_book.id_book = $id";
-		$data['genre_book']=$this->truyentranh_model->query($genre_book);
+		$chapter_book = "SELECT * FROM book INNER JOIN chapter ON chapter.id_book = book.id_book where id_chapter=$id";
+		$data['chapter_book'] = $this->truyentranh_model->query($chapter_book);
 		/*****/
-		$artist_book="SELECT * FROM ( ( artist_book INNER JOIN artist ON artist.id_artist = artist_book.id_artist ) INNER JOIN book ON artist_book.id_book = book.id_book ) WHERE artist_book.id_book = $id";
-		$data['artist_book']=$this->truyentranh_model->query($artist_book);
-		/*****/
-		$chapter_book="SELECT * FROM book INNER JOIN chapter ON chapter.id_book = book.id_book WHERE book.id_book=$id";
-		$data['chapter_book']=$this->truyentranh_model->query($chapter_book);
-		/*****/
-		$type_book="SELECT * FROM book INNER JOIN type ON type.id_type = book.id_type WHERE book.id_book=$id";
-		$data['type_book']=$this->truyentranh_model->query($type_book);
-		/*****/
-		$status_book="SELECT * FROM book INNER JOIN status ON status.id_status = book.id_status WHERE book.id_book=$id";
-		$data['status_book']=$this->truyentranh_model->query($status_book);
-		/*****/
-		$chapter_page="SELECT * FROM chapter INNER JOIN page ON chapter.id_chapter = page.id_chapter WHERE chapter.id_chapter=$id";
-		$data['chapter_page']=$this->truyentranh_model->query($chapter_page);
-		/*****/
-		$random="SELECT * FROM book ORDER BY RAND() LIMIT 1";
-		$data['random']=$this->truyentranh_model->query($random);
-		$type="select * from type";
-		$data['type']=$this->truyentranh_model->query($type);
-		$status="Select * from status";
-		$data['status']=$this->truyentranh_model->query($status);
-		$genre="Select * from genre";
-		$data['genre']=$this->truyentranh_model->query($genre);
-		$book="select * from book where id_book=$id";
-		$data['book']=$this->truyentranh_model->query($book);
-		$alternative="select * from alternative where id_book=$id";
-		$data['alternative']=$this->truyentranh_model->query($alternative);
-		$book="select * from user";
-		$data['user']=$this->truyentranh_model->query($book);
-
-		if ($this->session->userdata('id_user')!='')
-		{
-			$giaodien['header'] = $this->load->view('home/header_signin',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
-			$giaodien['body'] = $this->load->view('page/detail',$data,TRUE);
-			$this->load->view('home/master',$giaodien);
+		foreach ($data['chapter_book'] as $row) {
+			$newdata = $row['id_book'];
 		}
-		else
-		{
-			$giaodien['header'] = $this->load->view('home/header_signout',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
-			$giaodien['body'] = $this->load->view('page/detail',$data,TRUE);
-			$this->load->view('home/master',$giaodien);
-		}
-	}
-	public function doctruyen($id='')
-	{
-		$page="Select * from page where id_chapter=$id";
-		$data['page']=$this->truyentranh_model->query($page);
 		/*****/
-		$chapter_page="SELECT * FROM chapter INNER JOIN page ON chapter.id_chapter = page.id_chapter WHERE chapter.id_chapter=$id";
-		$data['chapter_page']=$this->truyentranh_model->query($chapter_page);
+		$chapter_book = "SELECT * FROM book INNER JOIN chapter ON chapter.id_book = book.id_book where chapter.id_book=$newdata order by created_datetime desc";
+		$data['chapter_book'] = $this->truyentranh_model->query($chapter_book);
 		/*****/
-		$chapter_book="SELECT * FROM book INNER JOIN chapter ON chapter.id_book = book.id_book where id_chapter=$id";
-		$data['chapter_book']=$this->truyentranh_model->query($chapter_book);
-		/*****/
-		foreach($data['chapter_book'] as $row)
-        {
-            $newdata=$row['id_book'];
-        }      
-		/*****/
-		$chapter_book="SELECT * FROM book INNER JOIN chapter ON chapter.id_book = book.id_book where chapter.id_book=$newdata order by created_datetime desc";
-		$data['chapter_book']=$this->truyentranh_model->query($chapter_book);
-		/*****/
-		$random="SELECT * FROM book ORDER BY RAND() LIMIT 1";
-		$data['random']=$this->truyentranh_model->query($random);
-		$type="select * from type";
-		$data['type']=$this->truyentranh_model->query($type);
-		$status="Select * from status";
-		$data['status']=$this->truyentranh_model->query($status);
-		$genre="Select * from genre";
-		$data['genre']=$this->truyentranh_model->query($genre);
-		$book="select * from user";
-		$data['user']=$this->truyentranh_model->query($book);  
-		/*****/
-		if ($this->session->userdata('id_user')!='')
-		{
-			$giaodien['header'] = $this->load->view('home/header_signin',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
-			$giaodien['body'] = $this->load->view('page/doctruyen',$data,TRUE);
-			$this->load->view('home/master',$giaodien);
-		}
-		else
-		{
-			$giaodien['header'] = $this->load->view('home/header_signout',$data,TRUE);
-			$giaodien['footer'] = $this->load->view('home/footer',NULL,TRUE);
-			$giaodien['body'] = $this->load->view('page/doctruyen',$data,TRUE);
-			$this->load->view('home/master',$giaodien);
-		}
+		$random = "SELECT * FROM book ORDER BY RAND() LIMIT 1";
+		$data['random'] = $this->truyentranh_model->query($random);
+		$type = "select * from type";
+		$data['type'] = $this->truyentranh_model->query($type);
+		$status = "Select * from status";
+		$data['status'] = $this->truyentranh_model->query($status);
+		$genre = "Select * from genre";
+		$data['genre'] = $this->truyentranh_model->query($genre);
+		$book = "select * from user";
+		$data['user'] = $this->truyentranh_model->query($book);
+		//
+		$giaodien['header'] = $this->load->view('home/header', $data, TRUE);
+		$giaodien['footer'] = $this->load->view('home/footer', NULL, TRUE);
+		$giaodien['body'] = $this->load->view('page/doctruyen', $data, TRUE);
+		$this->load->view('home/master', $giaodien);
 	}
 }

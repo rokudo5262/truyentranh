@@ -6,13 +6,17 @@
 					<div class="card-title">Mới Nhất</div>
 				</div>
 				<div class="card-body">
-					<div class="clearfix">
-						<?php foreach ($chapter_book as $data) : ?>
-							<a href="<?php echo base_url(); ?>main/detail/<?= $data['id_book'] ?>"><img src="<?php echo base_url(); ?>asset/images/<?= $data['img_book'] ?>" class="rounded float-left pull-left mr-2" alt="..."></a>
-							<p><a href="<?php echo base_url(); ?>main/detail/<?= $data['id_book'] ?>"><?= $data['name_book'] ?></a></p>
-							<p>
-								<li><a href="<?php echo base_url(); ?>main/doctruyen/<?= $data['id_chapter'] ?>">Chapter <?= $data['number_chapter'] ?> :<?= $data['name_chapter'] ?></a></li>
-							</p>
+					<div class="row">
+						<?php foreach ($book as $data) : ?>
+							<div class="col-6 col-md-6 col-sm-12 col-xs-12">
+								<div class="card">
+									<div class="row">
+										<div class="col">
+											<img width="120" height="200" src="<?php echo base_url(); ?>asset/images/book/<?= $data['image_book'] ?>" class="rounded">
+										</div>
+									</div>
+								</div>
+							</div>
 						<?php endforeach; ?>
 					</div>
 				</div>
@@ -28,10 +32,12 @@
 				</div>
 				<div class="card-body">
 					<?php foreach ($genre as $data) : ?>
-						<a href="<?php echo base_url(); ?>main/genre/<?php echo $data['id_genre'] ?>"><?php echo $data['name_genre'] ?></a>
+						<a class="badge badge-primary" href="<?php echo base_url(); ?>main/genre/<?php echo $data['id_genre'] ?>"><?php echo $data['name_genre'] ?></a>
 					<?php endforeach; ?>
 				</div>
-				<div class="card-footer"></div>
+				<div class="card-footer bg-primary text-center ">
+					<a class="text-white">Xem thêm</a>
+				</div>
 			</div>
 		</div>
 	</div>

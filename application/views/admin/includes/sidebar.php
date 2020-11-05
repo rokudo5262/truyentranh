@@ -112,14 +112,6 @@
   </li>
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
-  <!-- Nav Item - Artists -->
-  <li class="nav-item <?php echo isset($artists) ? "active" : "";  ?>">
-    <a class="nav-link" href="<?php echo base_url(); ?>admin/artists">
-      <i class="fas fa-fw fa-table"></i>
-      <span>Artist</span></a>
-  </li>
-  <!-- Divider -->
-  <hr class="sidebar-divider d-none d-md-block">
   <!-- Nav Item - Genres -->
   <li class="nav-item <?php echo isset($genres) ? "active" : "";  ?>">
     <a class="nav-link" href="<?php echo base_url(); ?>admin/genres">

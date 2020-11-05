@@ -54,5 +54,9 @@ class truyentranh_model extends CI_Model
 	    $result = $query->result_array();
 	    return $result;
 	}
-	
+	public function limit($select,$table,$where,$order,$limit)
+	{
+		$result = $this->db->select($select)->from($table)->where($where)->order_by($order,'desc')->limit($limit)->get();
+		return $result->result_array();
+	}
 }
