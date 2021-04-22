@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
   <!-- Page Heading -->
-  <h1 class="h3 mb-2 text-gray-800">Status</h1>
+  <h3>STATUSES</h3>
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -15,9 +15,7 @@
               <th>Id</th>
               <th>Status</th>
               <th>Description</th>
-              <th>Detail</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th>Options</th>
             </tr>
           </thead>
           <tfoot>
@@ -25,9 +23,7 @@
               <th>Id</th>
               <th>Status</th>
               <th>Description</th>
-              <th>Detail</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th>Options</th>
             </tr>
           </tfoot>
           <tbody>
@@ -36,9 +32,11 @@
                 <td><?php echo $status['id_status'] ?></td>
                 <td><?php echo $status['name_status'] ?></td>
                 <th><?php echo $status['description_status'] ?></th>
-                <td><a type="button" href="<?php echo base_url();?>admin/status/<?php echo $status['id_status'] ?>" class="btn btn-primary btn-sm">Detail</a></td>
-                <td><button type="submit" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#update">Edit</button></td>
-                <td><button type="submit" class="btn btn-danger btn-sm">Delete</button></td>
+                <td>
+                  <a type="button" href="<?php echo base_url(); ?>admin/status/<?php echo $status['id_status'] ?>" class="btn btn-primary btn-sm">Detail</a>
+                  <button type="submit" class="btn btn-success btn-sm" data-toggle="modal" data-target="#update">Edit</button>
+                  <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </td>
               </tr>
             <?php endforeach ?>
           </tbody>
@@ -52,15 +50,15 @@
 <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form action="<?php echo base_url();?>admin/status_add" class="user" method="post" enctype="multipart/form-data">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Status</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
+      <form action="<?php echo base_url(); ?>admin/status_add" class="user" method="post" enctype="multipart/form-data">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Status</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
             <label>Status Name</label>
             <input type="text" class="form-control" id="status" name="status" placeholder="Status name">
           </div>
@@ -68,11 +66,11 @@
             <label>Status Discription</label>
             <textarea type="text" class="form-control" id="description" name="description" placeholder="Status Description"></textarea>
           </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <button class="btn btn-primary" type="submit" >Add</a>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary" type="submit">Add</a>
+        </div>
       </form>
     </div>
   </div>
@@ -81,7 +79,7 @@
 <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-    <form action="" class="user" method="post" enctype="multipart/form-data">
+      <form action="" class="user" method="post" enctype="multipart/form-data">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Update Status</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">

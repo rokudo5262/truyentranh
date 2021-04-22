@@ -1,23 +1,12 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class main extends CI_Controller
-{
-	public function __construct()
-	{
+class main extends CI_Controller {
+	public function __construct() {
 		parent::__construct();
-		$this->load->helper('string');
-		$this->load->helper(array('form'));
-		$this->load->helper(array('url'));
-		$this->load->library(array('form_validation'));
-		$this->load->library(array('session'));
-		$this->load->library("cart");
-		$this->load->library("pagination");
-		$this->load->library('image_lib');
 		$this->load->database();
 	}
-	public function signin()
-	{
+	public function signin() {
 		$gmail = $this->input->post('gmail');
 		$password = md5($this->input->post('password'));
 		$signin = "Select * from user where gmail_user='$gmail' And password_user='$password'";
@@ -39,15 +28,11 @@ class main extends CI_Controller
 			echo "<script> window.location.href='../main/trangchu';</script>";
 		}
 	}
-	/********************************************************************************************************************************************************************************************************************************************************************/
-	public function signout()
-	{
+	public function signout() {
 		$this->session->sess_destroy();
 		redirect('main/trangchu');
 	}
-	/********************************************************************************************************************************************************************************************************************************************************************/
-	public function signup()
-	{
+	public function signup() {
 		$gmail = $this->input->post('gmail');
 		$exists = $this->truyentranh_model->check($gmail);
 		$count = count($exists);
@@ -65,10 +50,7 @@ class main extends CI_Controller
 			echo "<script> window.location.href='../main/trangchu';</script>";
 		}
 	}
-	/********************************************************************************************************************************************************************************************************************************************************************/
-	public function trangchu()
-	{
-		$data['books'] = $this->truyentranh_model->limit('*', 'book', array('id_book' > 0), 'created_datetime', 15);
+	public function trangchu() {
 		$chapter_book = "SELECT * FROM book INNER JOIN chapter ON chapter.id_book = book.id_book";
 		$data['chapter_book'] = $this->truyentranh_model->query($chapter_book);
 		/*****/
@@ -78,18 +60,17 @@ class main extends CI_Controller
 		$data['type'] = $this->truyentranh_model->query($type);
 		$status = "Select * from status";
 		$data['status'] = $this->truyentranh_model->query($status);
-		$genre = "Select * from genre order by name_genre";
+		$genre = "Select * FROM genre ORDER BY name_genre";
 		$data['genre'] = $this->truyentranh_model->query($genre);
 		$book = "select * from book";
 		$data['book'] = $this->truyentranh_model->query($book);
 		//
-		$giaodien['header'] = $this->load->view('home/header', $data, TRUE);
-		$giaodien['footer'] = $this->load->view('home/footer', NULL, TRUE);
-		$giaodien['body'] = $this->load->view('page/trangchu', $data, TRUE);
-		$this->load->view('home/master', $giaodien);
+		$giaodien['header'] = $this->load->view('home/includes/header', $data, TRUE);
+		$giaodien['footer'] = $this->load->view('home/includes/footer', NULL, TRUE);
+		$giaodien['body'] = $this->load->view('home/pages/trangchu', $data, TRUE);
+		$this->load->view('home/includes/master', $giaodien);
 	}
-	public function canhan()
-	{
+	public function canhan() {
 		$random = "SELECT * FROM book ORDER BY RAND() LIMIT 1";
 		$data['random'] = $this->truyentranh_model->query($random);
 		$type = "select * from type";
@@ -103,10 +84,10 @@ class main extends CI_Controller
 		$book = "select * from user";
 		$data['user'] = $this->truyentranh_model->query($book);
 		//
-		$giaodien['header'] = $this->load->view('home/header', $data, TRUE);
-		$giaodien['footer'] = $this->load->view('home/footer', NULL, TRUE);
-		$giaodien['body'] = $this->load->view('page/canhan', $data, TRUE);
-		$this->load->view('home/master', $giaodien);
+		$giaodien['header'] = $this->load->view('home/includes/header', $data, TRUE);
+		$giaodien['footer'] = $this->load->view('home/includes/footer', NULL, TRUE);
+		$giaodien['body'] = $this->load->view('home/pages/trangchu', $data, TRUE);
+		$this->load->view('home/includes/master', $giaodien);
 	}
 	public function timkiemnangcao()
 	{
@@ -123,10 +104,10 @@ class main extends CI_Controller
 		$book = "select * from user";
 		$data['user'] = $this->truyentranh_model->query($book);
 		//
-		$giaodien['header'] = $this->load->view('home/header', $data, TRUE);
-		$giaodien['footer'] = $this->load->view('home/footer', NULL, TRUE);
-		$giaodien['body'] = $this->load->view('page/timkiemnangcao', $data, TRUE);
-		$this->load->view('home/master', $giaodien);
+		$giaodien['header'] = $this->load->view('home/includes/header', $data, TRUE);
+		$giaodien['footer'] = $this->load->view('home/includes/footer', NULL, TRUE);
+		$giaodien['body'] = $this->load->view('home/pages/trangchu', $data, TRUE);
+		$this->load->view('home/includes/master', $giaodien);
 	}
 	public function genre($id = '')
 	{
@@ -151,10 +132,38 @@ class main extends CI_Controller
 		$id_genre = "Select * from genre where id_genre=$id";
 		$data['id_genre'] = $this->truyentranh_model->query($id_genre);
 		//
-		$giaodien['header'] = $this->load->view('home/header', $data, TRUE);
-		$giaodien['footer'] = $this->load->view('home/footer', NULL, TRUE);
-		$giaodien['body'] = $this->load->view('page/genre', $data, TRUE);
-		$this->load->view('home/master', $giaodien);
+		$giaodien['header'] = $this->load->view('home/includes/header', $data, TRUE);
+		$giaodien['footer'] = $this->load->view('home/includes/footer', NULL, TRUE);
+		$giaodien['body'] = $this->load->view('home/pages/genre', $data, TRUE);
+		$this->load->view('home/includes/master', $giaodien);
+	}
+	public function status($id = '')
+	{
+		$genre_book = "SELECT * FROM ( ( genre_book INNER JOIN genre ON genre.id_genre = genre_book.id_genre ) INNER JOIN book ON genre_book.id_book = book.id_book ) WHERE genre_book.id_genre = $id";
+		$data['genre_book'] = $this->truyentranh_model->query($genre_book);
+		/*****/
+		$book_genre = "SELECT * FROM ( ( genre_book INNER JOIN genre ON genre.id_genre = genre_book.id_genre ) INNER JOIN book ON genre_book.id_book = book.id_book ) WHERE genre_book.id_book = $id";
+		$data['book_genre'] = $this->truyentranh_model->query($book_genre);
+		/*****/
+		$random = "SELECT * FROM book ORDER BY RAND() LIMIT 1";
+		$data['random'] = $this->truyentranh_model->query($random);
+		$type = "select * from type";
+		$data['type'] = $this->truyentranh_model->query($type);
+		$status = "Select * from status";
+		$data['status'] = $this->truyentranh_model->query($status);
+		$genre = "Select * from genre";
+		$data['genre'] = $this->truyentranh_model->query($genre);
+		$book = "select * from book";
+		$data['book'] = $this->truyentranh_model->query($book);
+		$book = "select * from user";
+		$data['user'] = $this->truyentranh_model->query($book);
+		$id_status = "Select * from status where id_status=$id";
+		$data['id_status'] = $this->truyentranh_model->query($id_status);
+		//
+		$giaodien['header'] = $this->load->view('home/includes/header', $data, TRUE);
+		$giaodien['footer'] = $this->load->view('home/includes/footer', NULL, TRUE);
+		$giaodien['body'] = $this->load->view('home/pages/status', $data, TRUE);
+		$this->load->view('home/includes/master', $giaodien);
 	}
 	public function detail($id = '')
 	{
@@ -191,10 +200,10 @@ class main extends CI_Controller
 		$genre = "Select * from genre";
 		$data['genre'] = $this->truyentranh_model->query($genre);
 		//
-		$giaodien['header'] = $this->load->view('home/header', $data, TRUE);
-		$giaodien['footer'] = $this->load->view('home/footer', NULL, TRUE);
-		$giaodien['body'] = $this->load->view('page/detail', $data, TRUE);
-		$this->load->view('home/master', $giaodien);
+		$giaodien['header'] = $this->load->view('home/includes/header', $data, TRUE);
+		$giaodien['footer'] = $this->load->view('home/includes/footer', NULL, TRUE);
+		$giaodien['body'] = $this->load->view('home/pages/detail', $data, TRUE);
+		$this->load->view('home/includes/master', $giaodien);
 	}
 	public function doctruyen($id = '')
 	{
@@ -225,9 +234,9 @@ class main extends CI_Controller
 		$book = "select * from user";
 		$data['user'] = $this->truyentranh_model->query($book);
 		//
-		$giaodien['header'] = $this->load->view('home/header', $data, TRUE);
-		$giaodien['footer'] = $this->load->view('home/footer', NULL, TRUE);
-		$giaodien['body'] = $this->load->view('page/doctruyen', $data, TRUE);
-		$this->load->view('home/master', $giaodien);
+		$giaodien['header'] = $this->load->view('home/includes/header', $data, TRUE);
+		$giaodien['footer'] = $this->load->view('home/includes/footer', NULL, TRUE);
+		$giaodien['body'] = $this->load->view('home/pages/trangchu', $data, TRUE);
+		$this->load->view('home/includes/master', $giaodien);
 	}
 }

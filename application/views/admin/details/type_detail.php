@@ -1,10 +1,9 @@
 <div class="container-fluid">
-    <!-- Page Heading -->
     <?php foreach ($type as $type) : ?>
         <form action="<?php echo base_url(); ?>admin/handle_type" class="user" method="post" enctype="multipart/form-data">
             <h1 class="h3 mb-2 text-gray-800">Type <?php echo $type['id_type']; ?> Detail</h1>
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
+                <div class="card-header">
                     <div class="card-title">
                         <a type="button" href="<?php echo base_url(); ?>admin/types" class="btn btn-info btn-sm"><i class="fas fa-arrow-left"></i></a>
                     </div>

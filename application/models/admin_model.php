@@ -1,0 +1,12 @@
+<?php
+class admin_model extends MY_Model {
+	public function __construct() {
+		parent::__construct();
+	}
+    public function signin($gmail,$password) {    
+        $this->db->where('gmail_staff',$gmail);
+        $this->db->where('password_staff',$password);
+        $this->db->where('deleted','0');
+        return $this->db->get('staff')->result_array();
+    }
+}

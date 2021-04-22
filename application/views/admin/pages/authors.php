@@ -1,50 +1,47 @@
 <div class="container-fluid">
-
   <!-- Page Heading -->
-  <h1 class="h3 mb-2 text-gray-800">ARTISTS</h1>
+  <h3>AUTHORS</h3>
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#add">Add</button>
     </div>
-    <div class="card-body">
-      <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Name</th>
-              <th>Image</th>
-              <th>Detail</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tfoot>
-            <tr>
-              <th>Id</th>
-              <th>Name</th>
-              <th>Image</th>
-              <th>Detail</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </tfoot>
-          <tbody>
-            <?php foreach ($authors as $author) : ?>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
               <tr>
-                <td><?php echo $author['id_author'] ?></td>
-                <td><?php echo $author['name_author'] ?></td>
-                <td><img class="rounded" width="40" height="56" src="<?php echo base_url();?>asset/images/author/<?php echo $author['image_author'] ?>"></td>
-                <td><a type="button" href="<?php echo base_url();?>admin/author/<?php echo $author['id_author'] ?>" class="btn btn-primary btn-sm">Detail</a></td>
-                <td><button type="submit" class="btn btn-success btn-sm" data-toggle="modal" data-target="#update">Edit</button></td>
-                <td><button type="submit" class="btn btn-danger btn-sm">Delete</button></td>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Options</th>
               </tr>
-            <?php endforeach ?>
-          </tbody>
-        </table>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Options</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <?php foreach ($authors as $author) : ?>
+                <tr>
+                  <td><?php echo $author['id_author'] ?></td>
+                  <td><?php echo $author['name_author'] ?></td>
+                  <td><img class="rounded" width="40" height="40" src="<?php echo base_url(); ?>asset/images/author/<?php echo $author['image_author'] ?>"></td>
+                  <td>
+                    <a type="button" href="<?php echo base_url(); ?>admin/author/<?php echo $author['id_author'] ?>" class="btn btn-primary btn-sm">Detail</a>
+                    <button type="submit" class="btn btn-success btn-sm" data-toggle="modal" data-target="#update">Edit</button>
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                  </td>
+                </tr>
+              <?php endforeach ?>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
     <div class="card-footer"></div>
   </div>
   <!-- Add Modal-->
@@ -74,7 +71,7 @@
           </div>
         </form>
       </div>
-    </div>
+    </div> 
   </div>
   <!-- Update Modal-->
   <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

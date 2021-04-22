@@ -1,7 +1,6 @@
-
 <div class="container-fluid">
   <!-- Page Heading -->
-  <h1 class="h3 mb-2 text-gray-800">Genres</h1>
+  <h3>Genres</h3>
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -14,18 +13,14 @@
             <tr>
               <th>Id</th>
               <th>Genre</th>
-              <th>Detail</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th>Options</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
               <th>Id</th>
               <th>Genre</th>
-              <th>Detail</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th>Options</th>
             </tr>
           </tfoot>
           <tbody>
@@ -33,9 +28,11 @@
               <tr>
                 <td><?php echo $genre['id_genre'] ?></td>
                 <td><?php echo $genre['name_genre'] ?></td>
-                <td><a type="button" href="<?php echo base_url();?>admin/genre/<?php echo $genre['id_genre'] ?>" class="btn btn-primary btn-sm">Detail</a></td>
-                <td><button type="submit" id="<?php echo $genre['id_genre'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-id="<?php echo $genre['id_genre'] ?>" data-target="#update">Edit</button></td>
-                <td><button type="submit" class="btn btn-danger btn-sm">Delete</button></td>
+                <td>
+                  <a type="button" href="<?php echo base_url();?>admin/genre/<?php echo $genre['id_genre'] ?>" class="btn btn-primary btn-sm">Detail</a>
+                  <button type="submit" id="<?php echo $genre['id_genre'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-id="<?php echo $genre['id_genre'] ?>" data-target="#update">Edit</button>
+                  <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </td>
               </tr>
             <?php endforeach ?>
           </tbody>

@@ -49,6 +49,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'main';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['admin']                 = 'staff/login';
+$route['admin/dashboard']       = 'staff/dashboard';
+$route['admin/signin']          = 'staff/signin';
+$route['admin/signout']         = 'staff/signout';
+$route['admin/login']           = 'staff/login';
+$route['admin/register']        = 'staff/register';
+$route['admin/forgot_password'] = 'staff/forgot_password';
+
+$route['admin/staffs']          = 'staff/index';
+$route['admin/staff/(:num)']    = 'staff/staff/$1';
+$route['admin/handle_staff']    = 'staff/handle_staff';
+
+$route['admin/authors']         = 'author/index';
+$route['admin/author/(:num)']   = 'author/author/$1';
+$route['admin/handle_author']   = 'author/handle_author';
+
+$route['admin/genres']          = 'genre/index';
+$route['admin/genre/(:num)']    = 'genre/genre/$1';
+$route['admin/handle_genre']    = 'type/handle_genre';
+
+$route['admin/types']           = 'type/index';
+$route['admin/type/(:num)']     = 'type/type/$1';
+$route['admin/handle_type']     = 'type/handle_type';
+
+$route['admin/books']           = 'comic/index';
+$route['admin/book/(:num)']     = 'comic/comic/$1';
+$route['admin/handle_book']     = 'type/handle_book';
+
+$route['admin/statuses']        = 'status/index';
+$route['admin/status/(:num)']   = 'status/status/$1';
+$route['admin/handle_status']   = 'status/handle_status';
+
+$route['admin/users']           = 'user/index';
+$route['admin/user/(:num)']     = 'user/user/$1';
+$route['admin/handle_user']     = 'user/handle_user';

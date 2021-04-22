@@ -1,10 +1,9 @@
 <div class="container-fluid">
-    <!-- Page Heading -->
     <?php foreach ($status as $status) : ?>
         <form action="<?php echo base_url(); ?>admin/handle_status" class="user" method="post" enctype="multipart/form-data">
             <h1 class="h3 mb-2 text-gray-800">Status <?php echo $status['id_status']; ?> Detail</h1>
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
+                <div class="card-header">
                     <div class="card-title">
                         <a type="button" href="<?php echo base_url(); ?>admin/statuses" class="btn btn-info btn-sm"><i class="fas fa-arrow-left"></i></a>
                     </div>

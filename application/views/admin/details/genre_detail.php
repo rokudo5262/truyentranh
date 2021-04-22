@@ -1,10 +1,9 @@
 <div class="container-fluid">
-    <!-- Page Heading -->
     <?php foreach ($genre as $genre) : ?>
         <form action="<?php echo base_url(); ?>admin/handle_genre" class="user" method="post" enctype="multipart/form-data">
             <h1 class="h3 mb-2 text-gray-800">Genre <?php echo $genre['id_genre']; ?> Detail</h1>
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
+                <div class="card-header">
                     <div class="card-title">
                         <a type="button" href="<?php echo base_url(); ?>admin/genres" class="btn btn-info btn-sm"><i class="fas fa-arrow-left"></i></a>
                     </div>
