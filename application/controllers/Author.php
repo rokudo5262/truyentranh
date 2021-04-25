@@ -1,15 +1,14 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Author extends MY_Controller {
 	function __construct() {
 		parent::__construct();
-		$this->load->model('author_model');
 	}
 	public function index() {
 		$data['authors'] = 'active';
-		if ($this->session->userdata('id_user') != '') {
-			$authors = "select * from author Where deleted='0'";
-			$data['authors'] = $this->truyentranh_model->query($authors);
+		if ($this->session->userdata()) {
+			$data['authors'] = $this->author_model->get();
 			$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar', $data, TRUE);
 			$giaodien['topbar'] = $this->load->view('admin/includes/topbar', '', TRUE);
 			$giaodien['content'] = $this->load->view('admin/pages/authors', $data, TRUE);
@@ -22,9 +21,8 @@ class Author extends MY_Controller {
 	}
 	public function author($id) {
 		$data['authors'] = 'active';
-		if ($this->session->userdata('id_user') != '') {
-			$author = "select * from author Where id_author=$id and deleted='0' LIMIT 1";
-			$data['author'] = $this->truyentranh_model->query($author);
+		if ($this->session->userdata()) {
+			$data['author'] = $this->author_model->get_author($id);
 			$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar', $data, TRUE);
 			$giaodien['topbar'] = $this->load->view('admin/includes/topbar', '', TRUE);
 			$giaodien['content'] = $this->load->view('admin/details/author_detail', $data, TRUE);
@@ -40,7 +38,7 @@ class Author extends MY_Controller {
 			'name_author' => $this->input->post('author'),
 			'description_author' => $this->input->post('description'),
 		);
-		$this->truyentranh_model->insert('author', $data);
+		$check = $this->author_model->add_author($data);
 		redirect('admin/authors');
 	}
 	public function handle_author() {

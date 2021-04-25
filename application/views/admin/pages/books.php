@@ -3,12 +3,12 @@
   <h3>BOOKS</h3>
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
-    <div class="card-header py-3">
+    <div class="card-header">
       <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#add">Add</button>
     </div>
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <table class="table table-bordered" id="dataTable">
             <thead>
               <tr>
                 <th>Id</th>
@@ -76,7 +76,6 @@
         </button>
       </div>
       <div class="modal-body">
-
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>

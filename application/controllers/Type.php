@@ -4,13 +4,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Type extends MY_Controller {
 	function __construct() {
 		parent::__construct();
-		$this->load->model('type_model');
 	}
 	public function index() {
 		$data['types'] = 'active';
-		if ($this->session->userdata('id_user') != '') {
-			$types = "select * from type Where deleted='0'";
-			$data['types'] = $this->truyentranh_model->query($types);
+		if ($this->session->userdata()) {
+			$data['types'] =  $this->type_model->get();
 			$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar', $data, TRUE);
 			$giaodien['topbar'] = $this->load->view('admin/includes/topbar', '', TRUE);
 			$giaodien['content'] = $this->load->view('admin/pages/types', $data, TRUE);
@@ -23,9 +21,8 @@ class Type extends MY_Controller {
 	}
 	public function type($id) {
 		$data['types'] = 'active';
-		if ($this->session->userdata('id_user') != '') {
-			$type = "select * from type Where id_type=$id and deleted='0' LIMIT 1";
-			$data['type'] = $this->truyentranh_model->query($type);
+		if ($this->session->userdata()) {
+			$data['type'] =  $this->type_model->get_type($id);
 			$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar', $data, TRUE);
 			$giaodien['topbar'] = $this->load->view('admin/includes/topbar', '', TRUE);
 			$giaodien['content'] = $this->load->view('admin/details/type_detail', $data, TRUE);
@@ -82,7 +79,7 @@ class Type extends MY_Controller {
 			'name_type' => $this->input->post('type'),
 			'description_type' => $this->input->post('description'),
 		);
-		$this->truyentranh_model->insert('type', $data);
+		$check = $this->type_model->add_type($data);
 		redirect('admin/types');
 	}
 }

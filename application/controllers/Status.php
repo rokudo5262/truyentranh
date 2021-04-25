@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Status extends MY_Controller {
 	function __construct() {
@@ -6,9 +7,8 @@ class Status extends MY_Controller {
 	}
     public function index() {
 		$data['statuses'] = 'active';
-		if ($this->session->userdata('id_user') != '') {
-			$statuses = "select * from status Where deleted='0'";
-			$data['statuses'] = $this->truyentranh_model->query($statuses);
+		if ($this->session->userdata()) {
+			$data['statuses'] =  $this->status_model->get();
 			$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar', $data, TRUE);
 			$giaodien['topbar'] = $this->load->view('admin/includes/topbar', '', TRUE);
 			$giaodien['content'] = $this->load->view('admin/pages/statuses', $data, TRUE);
@@ -21,9 +21,8 @@ class Status extends MY_Controller {
 	}
 	public function status($id) {
 		$data['statuses'] = 'active';
-		if ($this->session->userdata('id_user') != '') {
-			$status = "select * from status Where id_status=$id and deleted='0' LIMIT 1";
-			$data['status'] = $this->truyentranh_model->query($status);
+		if ($this->session->userdata()) {
+			$data['status'] = $this->status_model->get_status($id);
 			$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar', $data, TRUE);
 			$giaodien['topbar'] = $this->load->view('admin/includes/topbar', '', TRUE);
 			$giaodien['content'] = $this->load->view('admin/details/status_detail', $data, TRUE);
@@ -78,7 +77,7 @@ class Status extends MY_Controller {
 			'name_status'			=> $this->input->post('status'),
 			'description_status'	=> $this->input->post('description'),
 		);
-		$this->truyentranh_model->insert('status', $data);
+		$check = $this->status_model->add_status($data);
 		redirect('admin/statuses');
 	}
 }

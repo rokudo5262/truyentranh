@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <?php foreach ($author as $author) : ?>
-        <form action="<?php echo base_url(); ?>admin/handle_author" class="user" method="post" enctype="multipart/form-data">
-            <h1 class="h3 mb-2 text-gray-800">Author <?php echo $author['id_author']; ?>Detail</h1>
+        <form action="<?php echo base_url(); ?>admin/handle_author" method="post" enctype="multipart/form-data">
+            <h3><?php echo $author['name_author']; ?>Detail</h3>
             <div class="card shadow mb-4">
                 <div class="card-header">
                     <div class="card-title">
@@ -19,7 +19,7 @@
                                 <div class="form-group">
                                     <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $author['id_author']; ?>">
                                     <input type="hidden" class="form-control" id="deleted" name="deleted" value="<?php echo $author['deleted']; ?>">
-                                </div>
+                                </div>sds
                                 <div class="form-group">
                                     <label>Author Name</label>
                                     <input type="text" class="form-control" id="author" name="author" value="<?php echo $author['name_author']; ?>">

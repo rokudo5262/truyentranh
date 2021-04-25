@@ -72,7 +72,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
-            <form class="user" method="post" action="<?php echo base_url(); ?>main/signin">
+            <formw method="post" action="<?php echo base_url(); ?>main/signin">
                 <div class="modal-header bg-primary text-white">
                     <h4 class="modal-title">Đăng Nhập</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -112,7 +112,7 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-                <form class="user" action="<?php echo base_url(); ?>main/signup" method="post">
+                <form action="<?php echo base_url(); ?>main/signup" method="post">
                     <div class="form-group">
                         <p>
                             <label>Email</label>

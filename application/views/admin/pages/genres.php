@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <!-- Page Heading -->
-  <h3>Genres</h3>
+  <h3>GENRES</h3>
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
-    <div class="card-header py-3">
-      <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#add">Add</button>
+    <div class="card-header">
+      <button type="submit" class="btn btn-primary">Add</button>
     </div>
     <div class="card-body">
       <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <table class="table table-bordered" id="dataTable">
           <thead>
             <tr>
               <th>Id</th>
@@ -46,7 +46,7 @@
 <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form class="user" action="<?php echo base_url();?>admin/genre_add" method="post" enctype="multipart/form-data">
+      <form action="<?php echo base_url();?>admin/genre_add" method="post" enctype="multipart/form-data">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Add Genre</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
@@ -75,7 +75,7 @@
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form action="" class="user" method="post" enctype="multipart/form-data">
+      <form action=""  method="post" enctype="multipart/form-data">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Update Genre</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">

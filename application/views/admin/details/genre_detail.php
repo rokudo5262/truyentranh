@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <?php foreach ($genre as $genre) : ?>
-        <form action="<?php echo base_url(); ?>admin/handle_genre" class="user" method="post" enctype="multipart/form-data">
-            <h1 class="h3 mb-2 text-gray-800">Genre <?php echo $genre['id_genre']; ?> Detail</h1>
+        <form action="<?php echo base_url(); ?>admin/handle_genre" method="post" enctype="multipart/form-data">
+            <h3><?php echo $genre['name_genre']; ?> Detail</h3>
             <div class="card shadow mb-4">
                 <div class="card-header">
                     <div class="card-title">

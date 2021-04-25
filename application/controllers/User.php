@@ -1,18 +1,17 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class User extends MY_Controller {
 	function __construct() {
 		parent::__construct();
-		$this->load->model('user_model');
 	}
 	public function index() {
 		$data['users'] = 'active';
-		if ($this->session->userdata('id_user') != '') {
-			$users = "select * from user Where deleted='0'";
-			$data['users'] = $this->truyentranh_model->query($users);
+		if ($this->session->userdata()) {
+			$data['users'] = $this->user_model->get();
 			$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar', $data, TRUE);
 			$giaodien['topbar'] = $this->load->view('admin/includes/topbar', '', TRUE);
-			$giaodien['content'] = $this->load->view('admin/pages/users', $data, TRUE);
+			$giaodien['conwtent'] = $this->load->view('admin/pages/users', $data, TRUE);
 			$giaodien['footer'] = $this->load->view('admin/includes/footer', NULL, TRUE);
 			$this->load->view('admin/includes/index', $giaodien);
 		} else {
@@ -22,9 +21,8 @@ class User extends MY_Controller {
 	}
 	public function user($id) {
 		$data['users'] = 'active';
-		if ($this->session->userdata('id_user') != '') {
-			$user = "select * from user Where id_user=$id and deleted='0' LIMIT 1";
-			$data['user'] = $this->truyentranh_model->query($user);
+		if ($this->session->userdata()) {
+			$data['user'] = $this->user_model->get_user($id);
 			$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar', $data, TRUE);
 			$giaodien['topbar'] = $this->load->view('admin/includes/topbar', '', TRUE);
 			$giaodien['content'] = $this->load->view('admin/details/user_detail', $data, TRUE);
@@ -46,8 +44,8 @@ class User extends MY_Controller {
 				'created_datetime' => $this->input->post('created_datetime'),
 				'updated_datetime' => $datetime,
 			);
-			$this->truyentranh_model->update_user($id, $data);
-			if ($this->truyentranh_model->update_user($id, $data)) {
+			$check = $this->truyentranh_model->update_user($id, $data);
+			if ($check) {
 				echo "<script>alert('Cập Nhật user Không thành Công');</script>";
 				echo "<script> window.location.href='../admin/user/'.$id;</script>";
 			} else {
@@ -63,8 +61,8 @@ class User extends MY_Controller {
 					'created_datetime' => $this->input->post('created_datetime'),
 					'updated_datetime' => $datetime,
 				);
-				$this->truyentranh_model->update_user($id, $data);
-				if ($this->truyentranh_model->update_user($id, $data)) {
+				$check = $this->truyentranh_model->update_user($id, $data);
+				if ($check) {
 					echo "<script>alert('Xóa user Không thành Công');</script>";
 					echo "<script> window.location.href='../admin/user/'.$id;</script>";
 				} else {
@@ -79,7 +77,7 @@ class User extends MY_Controller {
 			'gmail_user'	=> $this->input->post('gmail'),
 			'password_user' => md5($this->input->post('password')),
 		);
-		$this->truyentranh_model->insert('user', $data);
+		$check = $this->user_model->add_user($data);
 		redirect('admin/users');
 	}
 }

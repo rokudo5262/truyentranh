@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <?php foreach ($type as $type) : ?>
-        <form action="<?php echo base_url(); ?>admin/handle_type" class="user" method="post" enctype="multipart/form-data">
-            <h1 class="h3 mb-2 text-gray-800">Type <?php echo $type['id_type']; ?> Detail</h1>
+        <form action="<?php echo base_url(); ?>admin/handle_type" method="post" enctype="multipart/form-data">
+            <h3><?php echo $type['name_type']; ?> Detail</h3>
             <div class="card shadow mb-4">
                 <div class="card-header">
                     <div class="card-title">

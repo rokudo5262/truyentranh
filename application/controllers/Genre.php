@@ -4,13 +4,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Genre extends MY_Controller {
 	function __construct() {
 		parent::__construct();
-		$this->load->model('genre_model');
 	}
     public function index() {
 		$data['genres'] = 'active';
-		if ($this->session->userdata('id_user') != '') {
-			$genres = "select * from genre Where deleted='0'";
-			$data['genres'] = $this->truyentranh_model->query($genres);
+		if ($this->session->userdata()) {
+			$data['genres'] =  $this->genre_model->get();
 			$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar', $data, TRUE);
 			$giaodien['topbar'] = $this->load->view('admin/includes/topbar', '', TRUE);
 			$giaodien['content'] = $this->load->view('admin/pages/genres', $data, TRUE);
@@ -23,9 +21,8 @@ class Genre extends MY_Controller {
 	}
 	public function genre($id) {
 		$data['genres'] = 'active';
-		if ($this->session->userdata('id_user') != '') {
-			$genre = "select * from genre Where id_genre=$id and deleted='0' LIMIT 1";
-			$data['genre'] = $this->truyentranh_model->query($genre);
+		if ($this->session->userdata()) {
+			$data['genre'] = $this->genre_model->get_genre($id);
 			$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar', $data, TRUE);
 			$giaodien['topbar'] = $this->load->view('admin/includes/topbar', '', TRUE);
 			$giaodien['content'] = $this->load->view('admin/details/genre_detail', $data, TRUE);
@@ -80,7 +77,7 @@ class Genre extends MY_Controller {
 			'name_genre' 		=> $this->input->post('genre'),
 			'description_genre' => $this->input->post('description'),
 		);
-		$this->truyentranh_model->insert('genre', $data);
+		$check = $this->genre_model->add_genre($data);
 		redirect('admin/genres');
 	}
 }

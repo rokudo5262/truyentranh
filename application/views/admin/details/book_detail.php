@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <?php foreach ($book as $book) : ?>
-        <form action="<?php echo base_url(); ?>admin/handle_book" class="user" method="post" enctype="multipart/form-data">
-            <h1 class="h3 mb-2 text-gray-800">Book <?php echo $book['id_book']; ?> Detail</h1>
+        <form action="<?php echo base_url(); ?>admin/handle_book" method="post" enctype="multipart/form-data">
+            <h3><?php echo $book['name_book']; ?> Detail</h3>
             <div class="card shadow mb-4">
                 <div class="card-header">
                     <div class="card-title">

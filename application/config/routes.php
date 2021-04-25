@@ -52,14 +52,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'main';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['']                      = 'main/index';
 
-$route['admin']                 = 'staff/login';
-$route['admin/dashboard']       = 'staff/dashboard';
-$route['admin/signin']          = 'staff/signin';
-$route['admin/signout']         = 'staff/signout';
-$route['admin/login']           = 'staff/login';
-$route['admin/register']        = 'staff/register';
-$route['admin/forgot_password'] = 'staff/forgot_password';
+$route['admin']                 = 'admin/login';
+$route['admin/dashboard']       = 'admin/dashboard';
+$route['admin/signin']          = 'admin/signin';
+$route['admin/signout']         = 'admin/signout';
+$route['admin/login']           = 'admin/login';
+$route['admin/register']        = 'admin/register';
+$route['admin/forgot_password'] = 'admin/forgot_password';
 
 $route['admin/staffs']          = 'staff/index';
 $route['admin/staff/(:num)']    = 'staff/staff/$1';

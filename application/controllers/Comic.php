@@ -1,15 +1,14 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Comic extends MY_Controller {
 	function __construct() {
 		parent::__construct();
-		$this->load->model('book_model');
 	}
     public function index() {
 		$data['books'] = 'active';
-		if ($this->session->userdata('id_user') != '') {
-			$books = "select * from book Where deleted='0'";
-			$data['books'] = $this->truyentranh_model->query($books);
+		if ($this->session->userdata()) {
+			$data['books'] =  $this->book_model->get();
 			$giaodien['sidebar'] = $this->load->view('admin/includes/sidebar', $data, TRUE);
 			$giaodien['topbar'] = $this->load->view('admin/includes/topbar', '', TRUE);
 			$giaodien['content'] = $this->load->view('admin/pages/books', $data, TRUE);
@@ -22,9 +21,8 @@ class Comic extends MY_Controller {
 	}
 	public function comic($id) {
 		$data['books'] = 'active';
-		if ($this->session->userdata('id_user') != '') {
-			$book = "select * from book Where id_book=$id and deleted='0' LIMIT 1";
-			$data['book'] = $this->truyentranh_model->query($book);
+		if ($this->session->userdata()) {
+			$data['book'] = $this->book_model->get_book($id);
 			//
 			$author = "SELECT * FROM ( ( role INNER JOIN author ON author.id_author = role.id_author ) INNER JOIN book ON book.id_book = role.id_book ) where role.id_book=$id and role.role='0'";
 			$data['author'] = $this->truyentranh_model->query($author);
@@ -56,16 +54,6 @@ class Comic extends MY_Controller {
 			echo "<script> alert('Phiên đã hết hạn vui lòng đăng nhập lại.');</script>";
 			echo "<script> window.location.href='../admin/login';</script>";
 		}
-	}
-	public function book_add() {
-		$data = array(
-			//'id_artist'=>$this->input->post('id'),
-			//'deleted'=>$this->input->post('deleted'),
-			//'created_datetime'=>$this->input->post('created_datetime'),
-			//'updated_datetime'=>$this->input->post('updated_datetime'),
-		);
-		$this->truyentranh_model->insert('user', $data);
-		redirect('admin/users');
 	}
 	public function handle_book() {
 		$datetime = date('Y-m-d H:i:s');

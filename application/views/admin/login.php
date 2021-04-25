@@ -39,7 +39,7 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-                  <form class="user" action="<?php echo base_url();?>admin/signin" method="POST" enctype="multipart/form-data">
+                  <form action="<?php echo base_url();?>admin/signin" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                       <input type="email" class="form-control form-control-user" name="email" id="email">
                     </div>

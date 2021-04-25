@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <?php foreach ($book as $book) : ?>
-    <form action="<?php echo base_url(); ?>" class="user" method="post" enctype="multipart/form-data">
+    <form action="<?php echo base_url(); ?>" method="post" enctype="multipart/form-data">
         <nav aria-label="breadcrumb" class="bg-white">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>main/trangchu">Trang chủ</a></li>
