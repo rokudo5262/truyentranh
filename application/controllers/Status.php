@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
 class Status extends MY_Controller {
 	function __construct() {
 		parent::__construct();
@@ -55,11 +54,11 @@ class Status extends MY_Controller {
 		} else {
 			if ($_POST["action"] == 'delete') {
 				$data = array(
-					'name_status' => $this->input->post('status'),
-					'description_status' => $this->input->post('description'),
-					'deleted' => '1',
-					'created_datetime' => $this->input->post('created_datetime'),
-					'updated_datetime' => $datetime,
+					'name_status' 			=> $this->input->post('status'),
+					'description_status' 	=> $this->input->post('description'),
+					'deleted' 				=> '1',
+					'created_datetime' 		=> $this->input->post('created_datetime'),
+					'updated_datetime' 		=> $datetime,
 				);
 				$check = $this->truyentranh_model->update_status($id, $data);
 				if ($check) {
